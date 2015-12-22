@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div ng-controller="MainCtrl" class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Flightbook</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li id="news_menu" class="active base_menu"><a href="/">News</a></li>
+                        <li id="flight_menu" class="base_menu"><a href="/flight">Flights</a></li>
+                        <li id="glider_menu" class="base_menu"><a href="/glider">Gliders</a></li>
+                        <li id="place_menu" class="base_menu"><a href="/place/">Places</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav pull-right">
+                        <li id="logout_menu" class="base_menu"><a href="">Logout</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+        <div class="container">
+            <div class="text-center">
+            {% block body %}{% endblock %}
+            {% block javascripts %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

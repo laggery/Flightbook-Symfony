@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Glider</h1>
+
+    <p><a class="btn btn-primary btn-lg" href="{{ path('glider_new') }}">Add</a></p>
+    <div class="lead place">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th>Buydate</th>
+                    <th>Brand</th>
+                    <th>Name</th>
+                    <th>Tandem</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for glider in gliders %}
+                    <tr>
+                        <td><a class="img glyphicon glyphicon-zoom-in" href="{{ path('glider_show', { 'id': glider.id }) }}"></a></td>
+                        <td><a class="img glyphicon glyphicon-edit" href="{{ path('glider_edit', { 'id': glider.id }) }}"></a></td>
+                        <td>{{ glider.buyDate|date("d.m.Y") }}</td>
+                        <td>{{ glider.brand }}</td>
+                        <td>{{ glider.name }}</td>
+                        <td>{% if glider.tandem %}Yes{% else %}No{% endif %}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

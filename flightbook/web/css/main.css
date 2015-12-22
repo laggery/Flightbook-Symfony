@@ -1,0 +1,28 @@
+body {
+    padding-top: 50px;
+}
+
+@media (max-width: 767px){
+    .navbar-collapse .navbar-nav.pull-right {
+        float: none!important;
+        margin-left: 0;
+    }
+    
+    .navbar-nav {
+        margin: 7.5px 0px;
+    }
+}
+
+ .lead .img {
+    text-decoration: none;
+    color: black;
+    cursor: pointer; 
+}
+
+#form-button {
+    margin-top: 1em;
+}
+
+table {
+    text-align: left;
+}

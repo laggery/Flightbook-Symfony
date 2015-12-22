@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>News</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Date</th>
+                <td>{% if news.date %}{{ news.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ news.title }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ news.text }}</td>
+            </tr>
+            <tr>
+                <th>Language</th>
+                <td>{{ news.language }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ news.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('news_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

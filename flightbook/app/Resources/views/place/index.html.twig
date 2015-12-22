@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Place</h1>
+
+    <p><a class="btn btn-primary btn-lg" href="{{ path('place_new') }}">Add</a></p>
+    <div class="lead place">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for place in places %}
+                    <tr>
+                        <td><a class="img glyphicon glyphicon-edit" href="{{ path('place_show', { 'id': place.id }) }}"></a></td>
+                        <td>{{ place.name }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

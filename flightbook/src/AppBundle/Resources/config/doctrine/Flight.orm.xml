@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Flight" table="flight">
+    <indexes>
+      <index name="glider_id" columns="glider_id"/>
+      <index name="landing_id" columns="landing_id"/>
+      <index name="start_id" columns="start_id"/>
+      <index name="user_id" columns="user_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="date" type="date" column="date" nullable="true"/>
+    <field name="time" type="time" column="time" nullable="true"/>
+    <field name="description" type="string" column="description" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="price" type="float" column="price" precision="10" scale="0" nullable="true"/>
+    <field name="km" type="integer" column="km" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="user" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="user_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="landing" target-entity="Place" fetch="LAZY">
+      <join-columns>
+        <join-column name="landing_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="start" target-entity="Place" fetch="LAZY">
+      <join-columns>
+        <join-column name="start_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="glider" target-entity="Glider" fetch="LAZY">
+      <join-columns>
+        <join-column name="glider_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
