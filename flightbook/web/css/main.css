@@ -26,3 +26,7 @@ body {
 table {
     text-align: left;
 }
+
+.edit-button, .delete-button {
+    width: 100%;
+}

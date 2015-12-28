@@ -3,46 +3,49 @@
 {% block body %}
     <h1>Flight</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Date</th>
-                <td>{% if flight.date %}{{ flight.date|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Time</th>
-                <td>{% if flight.time %}{{ flight.time|date('H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ flight.description }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ flight.price }}</td>
-            </tr>
-            <tr>
-                <th>Km</th>
-                <td>{{ flight.km }}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ flight.id }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <p><a class="edit-button btn btn-primary btn-lg" href="{{ path('flight_edit', { 'id': flight.id }) }}">Edit</a></p>
 
-    <ul>
-        <li>
-            <a href="{{ path('flight_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('flight_edit', { 'id': flight.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="lead place">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Glider</th>
+                    <td>{{ flight.glider.brand }} {{ flight.glider.name }}</td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>{% if flight.date %}{{ flight.date|date('d.m.Y') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Start</th>
+                    <td>{{ flight.start.name }}</td>
+                </tr>
+                <tr>
+                    <th>Landing</th>
+                    <td>{{ flight.landing.name }}</td>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <td>{% if flight.time %}{{ flight.time|date('H:i') }}{% endif %}</td>
+                </tr>
+                {% if flight.glider.tandem %}
+                    <tr>
+                        <th>Price</th>
+                        <td>{{ flight.price }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th>Km</th>
+                    <td>{{ flight.km }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ flight.description }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {{ form_start(delete_form) }}
+    <input class="delete-button btn btn-danger btn-lg" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
 {% endblock %}

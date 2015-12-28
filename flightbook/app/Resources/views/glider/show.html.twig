@@ -3,42 +3,32 @@
 {% block body %}
     <h1>Glider</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Buydate</th>
-                <td>{% if glider.buyDate %}{{ glider.buyDate|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td>{{ glider.brand }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ glider.name }}</td>
-            </tr>
-            <tr>
-                <th>Tandem</th>
-                <td>{% if glider.tandem %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ glider.id }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <p><a class="edit-button btn btn-primary btn-lg" href="{{ path('glider_edit', { 'id': glider.id }) }}">Edit</a></p>
 
-    <ul>
-        <li>
-            <a href="{{ path('glider_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('glider_edit', { 'id': glider.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="lead place">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Buydate</th>
+                    <td>{% if glider.buyDate %}{{ glider.buyDate|date('d.m.Y') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Brand</th>
+                    <td>{{ glider.brand }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ glider.name }}</td>
+                </tr>
+                <tr>
+                    <th>Tandem</th>
+                    <td>{% if glider.tandem %}Yes{% else %}No{% endif %}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {{ form_start(delete_form) }}
+    <input class="delete-button btn btn-danger btn-lg" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
 {% endblock %}

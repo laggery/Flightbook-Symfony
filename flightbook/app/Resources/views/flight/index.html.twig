@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Flight</h1>
+    <h1>{{ 'flights'|trans }}</h1>
 
     <p><a class="btn btn-primary btn-lg" href="{{ path('flight_new') }}">Add</a></p>
     <div class="lead place">
@@ -11,10 +11,10 @@
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
                     <th>Date</th>
+                    <th>Start</th>
+                    <th>Landing</th>
                     <th>Time</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Km</th>
+                    <th>Glider</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,10 +23,10 @@
                         <td><a class="img glyphicon glyphicon-zoom-in" href="{{ path('flight_show', { 'id': flight.id }) }}"></a></td>
                         <td><a class="img glyphicon glyphicon-edit" href="{{ path('flight_edit', { 'id': flight.id }) }}"></a></td>
                         <td>{{ flight.date|date("d.m.Y") }}</td>
+                        <td>{{ flight.start.name}}</td>
+                        <td>{{ flight.landing.name}}</td>
                         <td>{% if flight.time %}{{ flight.time|date('H:i:s') }}{% endif %}</td>
-                        <td>{{ flight.description }}</td>
-                        <td>{{ flight.price }}</td>
-                        <td>{{ flight.km }}</td>
+                        <td>{{ flight.glider.brand }} {{ flight.glider.name }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

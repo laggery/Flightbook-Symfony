@@ -25,7 +25,7 @@ class FlightController extends Controller {
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
-        $flights = $em->getRepository('AppBundle:Flight')->findAll();
+        $flights = $em->getRepository('AppBundle:Flight')->findBy(array('user' => 1));
 
         return $this->render('flight/index.html.twig', array(
                     'flights' => $flights,

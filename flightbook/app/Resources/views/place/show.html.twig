@@ -3,30 +3,20 @@
 {% block body %}
     <h1>Place</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Name</th>
-                <td>{{ place.name }}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ place.id }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <p><a class="edit-button btn btn-primary btn-lg" href="{{ path('place_edit', { 'id': place.id }) }}">Edit</a></p>
 
-    <ul>
-        <li>
-            <a href="{{ path('place_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('place_edit', { 'id': place.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="lead place">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ place.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {{ form_start(delete_form) }}
+    <input class="delete-button btn btn-danger btn-lg" type="submit" value="Delete">
+    {{ form_end(delete_form) }}
 {% endblock %}

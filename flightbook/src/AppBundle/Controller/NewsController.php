@@ -21,11 +21,12 @@ class NewsController extends Controller
      * @Route("/", name="news_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $news = $em->getRepository('AppBundle:News')->findAll();
+        $locale = $request->getLocale();
+        $news = $em->getRepository('AppBundle:News')->findBy(array('language' => $locale));
 
         return $this->render('news/index.html.twig', array(
             'news' => $news,

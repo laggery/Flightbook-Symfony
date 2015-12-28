@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Flight
  *
  * @ORM\Table(name="flight", indexes={@ORM\Index(name="glider_id", columns={"glider_id"}), @ORM\Index(name="landing_id", columns={"landing_id"}), @ORM\Index(name="start_id", columns={"start_id"}), @ORM\Index(name="user_id", columns={"user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\FlightRepository")
  */
 class Flight {
 

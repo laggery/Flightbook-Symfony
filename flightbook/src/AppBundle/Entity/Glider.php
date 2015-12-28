@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Glider
  *
  * @ORM\Table(name="glider", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\GliderRepository")
  */
 class Glider {
 
