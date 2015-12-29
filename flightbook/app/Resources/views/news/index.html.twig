@@ -3,7 +3,7 @@
 {% block body %}
     <h1>News</h1>
     <div class="lead">
-        {% for news in news if news.language == 'en' %}
+        {% for news in news %}
             <p class="title"><span>{{ news.date|date("d.m.Y") }}</span> {{news.title}}</p>
             {{ news.text|raw }}
         {% endfor %}

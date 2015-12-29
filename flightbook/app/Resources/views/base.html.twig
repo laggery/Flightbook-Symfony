@@ -22,7 +22,7 @@
                 {% set module = app.request.attributes.get('_route')|split('_') %}
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li id="news_menu" class="{% if module[0] == 'news' %}active{% endif %} base_menu"><a href="/">News</a></li>
+                        <li id="news_menu" class="{% if module[0] == 'news' %}active{% endif %} base_menu"><a href="/{{ app.request.locale }}/">News</a></li>
                         <li id="flight_menu" class="{% if module[0] == 'flight' %}active{% endif %} base_menu"><a href="/{{ app.request.locale }}/flight">{{ 'flights'|trans }}</a></li>
                         <li id="glider_menu" class="{% if module[0] == 'glider' %}active{% endif %} base_menu"><a href="/{{ app.request.locale }}/glider">{{ 'gliders'|trans }}</a></li>
                         <li id="place_menu" class="{% if module[0] == 'place' %}active{% endif %} base_menu"><a href="/{{ app.request.locale }}/place/">{{ 'places'|trans }}</a></li>
