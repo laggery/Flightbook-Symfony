@@ -18,12 +18,12 @@ class GliderType extends AbstractType {
                     'input' => 'datetime',
                     'widget' => 'choice',
                     'format' => 'dd.MM.yyyy',
-					'attr' => array('class' => 'dateSelectfield')))
+                    'attr' => array('class' => 'dateSelectfield')))
                 ->add('brand')
                 ->add('name')
                 ->add('tandem')
                 ->add('user', null, array(
-    'attr' => array('class' => 'selectfield')))
+                    'attr' => array('class' => 'selectfield')))
         ;
     }
 

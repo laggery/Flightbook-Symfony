@@ -19,23 +19,23 @@ class FlightType extends AbstractType {
                     'input' => 'datetime',
                     'widget' => 'choice',
                     'format' => 'dd.MM.yyyy',
-					'attr' => array('class' => 'dateSelectfield')))
+                    'attr' => array('class' => 'dateSelectfield')))
                 ->add('time', TimeType::class, array(
                     'input' => 'datetime',
                     'widget' => 'choice',
                     'required' => false,
-					'attr' => array('class' => 'timeSelectfield')))
+                    'attr' => array('class' => 'timeSelectfield')))
                 ->add('description')
                 ->add('price')
                 ->add('km')
                 ->add('user', null, array(
-    'attr' => array('class' => 'selectfield')))
+                    'attr' => array('class' => 'selectfield')))
                 ->add('landing', null, array(
-    'attr' => array('class' => 'selectfield')))
+                    'attr' => array('class' => 'selectfield')))
                 ->add('start', null, array(
-    'attr' => array('class' => 'selectfield')))
+                    'attr' => array('class' => 'selectfield')))
                 ->add('glider', null, array(
-    'attr' => array('class' => 'selectfield')));
+                    'attr' => array('class' => 'selectfield')));
     }
 
     /**
