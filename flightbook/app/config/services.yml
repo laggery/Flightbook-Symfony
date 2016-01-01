@@ -4,6 +4,9 @@ parameters:
 #    parameter_name: value
 
 services:
+    password_encoder:
+        class: AppBundle\Service\PasswordEncoder
+        
     app.locale_listener:
         class: AppBundle\EventListener\LocaleListener
         arguments: ['%kernel.default_locale%']

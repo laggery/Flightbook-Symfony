@@ -5,6 +5,7 @@
 
     <p><a class="btn btn-primary btn-lg" href="{{ path('glider_new') }}">Add</a></p>
     <div class="lead place">
+        {% if gliders|length > 0 %}
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -21,7 +22,11 @@
                     <tr>
                         <td><a class="img glyphicon glyphicon-zoom-in" href="{{ path('glider_show', { 'id': glider.id }) }}"></a></td>
                         <td><a class="img glyphicon glyphicon-edit" href="{{ path('glider_edit', { 'id': glider.id }) }}"></a></td>
+                        {% if glider.buyDate %}
                         <td>{{ glider.buyDate|date("d.m.Y") }}</td>
+                        {% else %}
+                        <td>-</td>
+                        {% endif %}
                         <td>{{ glider.brand }}</td>
                         <td>{{ glider.name }}</td>
                         <td>{% if glider.tandem %}Yes{% else %}No{% endif %}</td>
@@ -29,5 +34,8 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% else %}
+            <p> This list is empty </p>
+        {% endif %}
     </div>
 {% endblock %}

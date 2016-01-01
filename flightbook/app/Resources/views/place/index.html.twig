@@ -5,6 +5,7 @@
 
     <p><a class="btn btn-primary btn-lg" href="{{ path('place_new') }}">Add</a></p>
     <div class="lead place">
+        {% if places|length > 0 %}
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -23,5 +24,8 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% else %}
+            <p> This list is empty </p>
+        {% endif %}
     </div>
 {% endblock %}

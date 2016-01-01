@@ -26,7 +26,9 @@ class GliderController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $gliders = $em->getRepository('AppBundle:Glider')->findBy(array('user' => 1));
+        $gliders = $em->getRepository('AppBundle:Glider')->findBy(
+                array('user' => $this->getUser()->getId()),
+                array('brand' => 'ASC'));
 
         return $this->render('glider/index.html.twig', array(
             'gliders' => $gliders,

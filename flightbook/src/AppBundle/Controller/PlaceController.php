@@ -26,7 +26,7 @@ class PlaceController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $places = $em->getRepository('AppBundle:Place')->findBy(array('user' => 1));
+        $places = $em->getRepository('AppBundle:Place')->findBy(array('user' => $this->getUser()->getId()));
 
         return $this->render('place/index.html.twig', array(
             'places' => $places,

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,8 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})})
  * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
  */
-class User
+class User extends BaseUser
 {
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
     /**
      * @var integer
      *
@@ -19,7 +25,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -34,35 +40,13 @@ class User
      * @ORM\Column(name="lastname", type="string", length=30, nullable=false)
      */
     private $lastname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=50, nullable=false)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="pwd", type="string", length=255, nullable=false)
-     */
-    private $pwd;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="salt", type="string", length=255, nullable=false)
-     */
-    private $salt;
-
+    
     /**
      * @var string
      *
      * @ORM\Column(name="token", type="string", length=30, nullable=true)
      */
     private $token;
-
 
 
     /**
@@ -114,30 +98,6 @@ class User
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
      * Set pwd
      *
      * @param string $pwd
@@ -146,7 +106,7 @@ class User
      */
     public function setPwd($pwd)
     {
-        $this->pwd = $pwd;
+        $this->password = $pwd;
 
         return $this;
     }
@@ -158,7 +118,7 @@ class User
      */
     public function getPwd()
     {
-        return $this->pwd;
+        return $this->password;
     }
 
     /**
