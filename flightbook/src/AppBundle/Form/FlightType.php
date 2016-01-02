@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class FlightType extends AbstractType {
 
@@ -15,8 +17,20 @@ class FlightType extends AbstractType {
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('glider', null, array(
-                    'attr' => array('class' => 'selectfield')))
+        $user = $options['data']->getUser();
+        $placesFunction = function (EntityRepository $er) use ($user) {
+            return $er->createQueryBuilder('p')
+                            ->where('p.user =' . $user->getId());
+        };
+        $builder->add('glider', EntityType::class, array(
+                    'class' => 'AppBundle:Glider',
+                    'attr' => array('class' => 'selectfield'),
+                    'query_builder' => function (EntityRepository $er) use ($user) {
+                        return $er->createQueryBuilder('g')
+                                ->where('g.user =' . $user->getId());
+                    },
+                    'required' => false,
+                ))
                 ->add('date', DateType::class, array(
                     'input' => 'datetime',
                     'widget' => 'choice',
@@ -27,19 +41,21 @@ class FlightType extends AbstractType {
                     'widget' => 'choice',
                     'required' => false,
                     'attr' => array('class' => 'timeSelectfield')))
-                ->add('start', null, array(
-                    'attr' => array('class' => 'selectfield')))
-                ->add('landing', null, array(
+                ->add('start', EntityType::class, array(
                     'class' => 'AppBundle:Place',
                     'attr' => array('class' => 'selectfield'),
-//                    'query_builder' => function (EntityRepository $er) {
-//                        return $er->createQueryBuilder('p')
-//                                ->where('p.user = 1');
-//                    }
+                    'query_builder' => $placesFunction,
+                    'required' => false,
+                ))
+                ->add('landing', EntityType::class, array(
+                    'class' => 'AppBundle:Place',
+                    'attr' => array('class' => 'selectfield'),
+                    'query_builder' => $placesFunction,
+                    'required' => false,
                 ))
                 ->add('price')
                 ->add('km')
-                ->add('description');                
+                ->add('description');
     }
 
     /**
