@@ -7,8 +7,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Doctrine\ORM\EntityRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class FlightType extends AbstractType {
 
@@ -17,7 +15,9 @@ class FlightType extends AbstractType {
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('date', DateType::class, array(
+        $builder->add('glider', null, array(
+                    'attr' => array('class' => 'selectfield')))
+                ->add('date', DateType::class, array(
                     'input' => 'datetime',
                     'widget' => 'choice',
                     'format' => 'dd.MM.yyyy',
@@ -27,9 +27,6 @@ class FlightType extends AbstractType {
                     'widget' => 'choice',
                     'required' => false,
                     'attr' => array('class' => 'timeSelectfield')))
-                ->add('description')
-                ->add('price')
-                ->add('km')
                 ->add('start', null, array(
                     'attr' => array('class' => 'selectfield')))
                 ->add('landing', null, array(
@@ -39,9 +36,10 @@ class FlightType extends AbstractType {
 //                        return $er->createQueryBuilder('p')
 //                                ->where('p.user = 1');
 //                    }
-                    ))
-                ->add('glider', null, array(
-                    'attr' => array('class' => 'selectfield')));
+                ))
+                ->add('price')
+                ->add('km')
+                ->add('description');                
     }
 
     /**
