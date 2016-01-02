@@ -24,10 +24,22 @@
                         <td><a class="img glyphicon glyphicon-zoom-in" href="{{ path('flight_show', { 'id': flight.id }) }}"></a></td>
                         <td><a class="img glyphicon glyphicon-edit" href="{{ path('flight_edit', { 'id': flight.id }) }}"></a></td>
                         <td>{{ flight.date|date("d.m.Y") }}</td>
+                        {% if flight.start %}
                         <td>{{ flight.start.name}}</td>
+                        {% else %}
+                        <td>-</td>
+                        {% endif %}
+                        {% if flight.landing %}
                         <td>{{ flight.landing.name}}</td>
+                        {% else %}
+                        <td>-</td>
+                        {% endif %}
                         <td>{% if flight.time %}{{ flight.time|date('H:i:s') }}{% endif %}</td>
+                        {% if flight.glider %}
                         <td>{{ flight.glider.brand }} {{ flight.glider.name }}</td>
+                        {% else %}
+                        <td>-</td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>

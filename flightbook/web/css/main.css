@@ -7,13 +7,13 @@ body {
         float: none!important;
         margin-left: 0;
     }
-    
+
     .navbar-nav {
         margin: 7.5px 0px;
     }
 }
 
- .lead .img {
+.lead .img {
     text-decoration: none;
     color: black;
     cursor: pointer; 
@@ -27,12 +27,15 @@ table {
     text-align: left;
 }
 
-.edit-button, .delete-button {
+.edit-button, .delete-button, .save-button {
     width: 100%;
 }
 
-
 /* Formulaire style */
+
+form {
+    margin-top: 20px;
+}
 
 form div label {
     float: left;
@@ -47,12 +50,12 @@ form div input[type=text],  form div input[type=number]{
 }
 
 .selectfield {
-	text-align: left;
+    text-align: left;
     display: block;
     width: 225px;
 }
 
 .dateSelectfield, .timeSelectfield, form div input[type=checkbox] {
-	text-align: left;
-	display: block;
+    text-align: left;
+    display: block;
 }

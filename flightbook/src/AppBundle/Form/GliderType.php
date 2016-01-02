@@ -21,10 +21,7 @@ class GliderType extends AbstractType {
                     'attr' => array('class' => 'dateSelectfield')))
                 ->add('brand')
                 ->add('name')
-                ->add('tandem')
-                ->add('user', null, array(
-                    'attr' => array('class' => 'selectfield')))
-        ;
+                ->add('tandem');
     }
 
     /**

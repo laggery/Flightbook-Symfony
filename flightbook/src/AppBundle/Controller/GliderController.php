@@ -44,6 +44,7 @@ class GliderController extends Controller
     public function newAction(Request $request)
     {
         $glider = new Glider();
+        $glider->setUser($this->getUser());
         $form = $this->createForm(GliderType::class, $glider);
         $form->handleRequest($request);
 
@@ -94,7 +95,7 @@ class GliderController extends Controller
             $em->persist($glider);
             $em->flush();
 
-            return $this->redirectToRoute('glider_edit', array('id' => $glider->getId()));
+            return $this->redirectToRoute('glider_show', array('id' => $glider->getId()));
         }
 
         return $this->render('glider/edit.html.twig', array(

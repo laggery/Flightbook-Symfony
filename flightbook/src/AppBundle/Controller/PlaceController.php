@@ -42,6 +42,7 @@ class PlaceController extends Controller
     public function newAction(Request $request)
     {
         $place = new Place();
+        $place->setUser($this->getUser());
         $form = $this->createForm(PlaceType::class, $place);
         $form->handleRequest($request);
 

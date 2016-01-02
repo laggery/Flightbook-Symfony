@@ -10,7 +10,7 @@
             <tbody>
                 <tr>
                     <th>Buydate</th>
-                    <td>{% if glider.buyDate %}{{ glider.buyDate|date('d.m.Y') }}{% endif %}</td>
+                    <td>{% if glider.buyDate %}{{ glider.buyDate|date('d.m.Y') }}{% else %}-{% endif %}</td>
                 </tr>
                 <tr>
                     <th>Brand</th>

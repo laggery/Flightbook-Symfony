@@ -41,6 +41,7 @@ class FlightController extends Controller {
      */
     public function newAction(Request $request) {
         $flight = new Flight();
+        $flight->setUser($this->getUser());
         $form = $this->createForm(FlightType::class, $flight);
         $form->handleRequest($request);
 
@@ -89,7 +90,7 @@ class FlightController extends Controller {
             $em->persist($flight);
             $em->flush();
 
-            return $this->redirectToRoute('flight_edit', array('id' => $flight->getId()));
+            return $this->redirectToRoute('flight_show', array('id' => $flight->getId()));
         }
 
         return $this->render('flight/edit.html.twig', array(

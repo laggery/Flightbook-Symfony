@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class FlightType extends AbstractType {
 
@@ -28,12 +30,16 @@ class FlightType extends AbstractType {
                 ->add('description')
                 ->add('price')
                 ->add('km')
-                ->add('user', null, array(
-                    'attr' => array('class' => 'selectfield')))
-                ->add('landing', null, array(
-                    'attr' => array('class' => 'selectfield')))
                 ->add('start', null, array(
                     'attr' => array('class' => 'selectfield')))
+                ->add('landing', null, array(
+                    'class' => 'AppBundle:Place',
+                    'attr' => array('class' => 'selectfield'),
+//                    'query_builder' => function (EntityRepository $er) {
+//                        return $er->createQueryBuilder('p')
+//                                ->where('p.user = 1');
+//                    }
+                    ))
                 ->add('glider', null, array(
                     'attr' => array('class' => 'selectfield')));
     }

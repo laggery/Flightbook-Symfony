@@ -13,10 +13,7 @@ class PlaceType extends AbstractType {
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('name')
-                ->add('user', null, array(
-                    'attr' => array('class' => 'selectfield')))
-        ;
+        $builder->add('name');
     }
 
     /**
