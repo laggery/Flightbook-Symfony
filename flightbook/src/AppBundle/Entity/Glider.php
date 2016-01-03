@@ -45,7 +45,7 @@ class Glider {
     /**
      * @var boolean
      *
-     * @ORM\Column(name="tandem", type="boolean", nullable=false)
+     * @ORM\Column(name="tandem", type="boolean", nullable=false, options={"default": 0})
      */
     private $tandem = '0';
 
@@ -54,7 +54,7 @@ class Glider {
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $user;

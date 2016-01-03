@@ -61,7 +61,7 @@ class Flight {
      *
      * @ORM\ManyToOne(targetEntity="Glider")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="glider_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="glider_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $glider;
@@ -91,7 +91,7 @@ class Flight {
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $user;
