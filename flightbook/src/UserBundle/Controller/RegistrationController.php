@@ -62,6 +62,13 @@ class RegistrationController extends Controller
         $form->setData($user);
 //        echo $event['_firstname'];
         
+        $em = $this->getDoctrine()->getManager();
+        
+        $userExist = $em->getRepository('AppBundle:User')->findBy(array('email' => $user->getEmail()));
+        if (count($userExist)>0){
+            $this->addFlash('error', 'This user already exists!');
+            return;
+        }
 
         $form->handleRequest($request);
 
