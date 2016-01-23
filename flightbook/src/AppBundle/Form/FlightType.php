@@ -29,7 +29,9 @@ class FlightType extends AbstractType {
                         return $er->createQueryBuilder('g')
                                 ->where('g.user =' . $user->getId());
                     },
-                    'required' => false,
+                    'required' => true,
+                    'placeholder' => '',
+                    'empty_data'  => null
                 ))
                 ->add('date', DateType::class, array(
                     'input' => 'datetime',
