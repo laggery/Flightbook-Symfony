@@ -12,7 +12,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="/">Flightbook</a>
@@ -32,7 +32,7 @@
                         <label class="sr-only" for="password">{{ 'security.login.password'|trans }}</label>
                         <input class="form-control" placeholder="Password" type="password" id="password" name="_password" required="required" />
                     </div>
-                    <div class="form-group">
+                    <div class="form-group group-remember">
                         <input class="form-control" type="checkbox" id="remember_me" name="_remember_me" value="on" />
                         <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                     </div>

@@ -10,16 +10,14 @@
 }
 
 /***  Center ***/
-.text-center {
-    margin-top: 6em;
-}
 .text-left {
     width: 50%;
     float: left;
     text-align: center;
 }
 .text-left .app-links img {
-    width: 30%;
+    width: 171px;
+    height: 51px;
 }
 
 .text-left .app-links {
@@ -37,4 +35,29 @@
 
 svg {
     vertical-align: middle;
+}
+
+@media (max-width: 767px){
+    .screen {
+        display: none;
+    }
+    .text-left, .text-right {
+        width: 100%;
+    }
+    #_submit {
+        width: 100%;
+    }
+    #remember_me {
+        width: 6%;
+        float: left;
+    }
+    .group-remember {
+        text-align: left;
+    }
+    .group-remember label {
+        margin-top: 0.8em;
+    }
+    .text-center {
+        margin-top: -2em;
+    }
 }
