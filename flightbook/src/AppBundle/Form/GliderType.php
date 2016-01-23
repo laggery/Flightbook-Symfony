@@ -16,6 +16,7 @@ class GliderType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('buyDate', DateType::class, array(
                     'input' => 'datetime',
+                    'required' => false,
                     'widget' => 'choice',
                     'format' => 'dd.MM.yyyy',
                     'attr' => array('class' => 'dateSelectfield')))

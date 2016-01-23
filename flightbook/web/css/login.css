@@ -1,0 +1,40 @@
+/***  Navigation bar ***/
+.navbar {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.navbar form {
+    color: white;
+    padding-top: 6px;
+    text-align: right;
+}
+
+/***  Center ***/
+.text-center {
+    margin-top: 6em;
+}
+.text-left {
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+.text-left .app-links img {
+    width: 30%;
+}
+
+.text-left .app-links {
+    margin-top: 2em;
+}
+.text-left .screen img {
+    width: 70%;
+    margin-top: 2em;
+}
+.text-right {
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+
+svg {
+    vertical-align: middle;
+}

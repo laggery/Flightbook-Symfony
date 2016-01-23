@@ -93,7 +93,7 @@ class PlaceController extends Controller
             $em->persist($place);
             $em->flush();
 
-            return $this->redirectToRoute('place_edit', array('id' => $place->getId()));
+            return $this->redirectToRoute('place_show', array('id' => $place->getId()));
         }
 
         return $this->render('place/edit.html.twig', array(
