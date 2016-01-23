@@ -59,3 +59,29 @@ form div input[type=text],  form div input[type=number]{
     text-align: left;
     display: block;
 }
+
+/*flash message*/
+.flash-error:before{
+    content: "✖ ";
+    font-weight: bold;
+}
+.flash-error{
+    background: #F79992;
+    border: 5px solid #CE6F6F;
+    color: #702B35;
+    padding: 10px 10px 10px 20px;
+    font-size: 14px;
+    margin-top: 1em;
+}
+.flash-notice:before {
+    content: "√ ";
+    font-weight: bold;
+}
+.flash-notice {
+    background: #CDE6AC;
+    border: 5px solid #92BD58;
+    color: #576A4D;
+    padding: 10px 10px 10px 20px;
+    font-size: 14px;
+    margin-top: 1em;
+}

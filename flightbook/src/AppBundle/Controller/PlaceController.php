@@ -48,10 +48,14 @@ class PlaceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($place);
-            $em->flush();
-
-            return $this->redirectToRoute('place_show', array('id' => $place->getId()));
+            $placeExist = $em->getRepository('AppBundle:Place')->findByName($this->getUser()->getId(), $place->getName());
+            if (count($placeExist)<1){
+                $em->persist($place);
+                $em->flush();
+                return $this->redirectToRoute('place_show', array('id' => $place->getId()));
+            } else {
+                $this->addFlash('error', 'This place already exists!');
+            }
         }
 
         return $this->render('place/new.html.twig', array(
@@ -90,10 +94,16 @@ class PlaceController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($place);
-            $em->flush();
-
-            return $this->redirectToRoute('place_show', array('id' => $place->getId()));
+            $placeExist = $em->getRepository('AppBundle:Place')->findByName($this->getUser()->getId(), $place->getName());
+            if (count($placeExist)<1){
+                $em->persist($place);
+                $em->flush();
+                return $this->redirectToRoute('place_show', array('id' => $place->getId()));
+            } elseif ($place->getId() == $placeExist[0]->getId()) {
+                return $this->redirectToRoute('place_show', array('id' => $place->getId()));
+            } else {
+                $this->addFlash('error', 'This place already exists!');
+            }
         }
 
         return $this->render('place/edit.html.twig', array(

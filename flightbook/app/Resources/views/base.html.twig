@@ -36,6 +36,16 @@
             </div>
         </div>
         <div class="container">
+            {% for flash_message in app.session.flashbag.get('error') %}
+                <div class="flash-error">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+            {% for flash_message in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
             <div class="text-center">
             {% block body %}{% endblock %}
             {% block javascripts %}{% endblock %}

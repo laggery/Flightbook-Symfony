@@ -12,10 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class PlaceRepository extends EntityRepository {
     
-//    public function findTest() {
-//        return $this->createQueryBuilder('p')
-//                ->where("p.name = 'Fiesch'")
-//                ->getQuery()
-//                ->execute();
-//    }
+    public function findByName($userId, $name) {
+        return $this->createQueryBuilder('p')
+                ->where("p.name ='" . $name . "'")
+                ->andWhere("p.user =" .$userId)
+                ->getQuery()
+                ->execute();
+    }
 }
