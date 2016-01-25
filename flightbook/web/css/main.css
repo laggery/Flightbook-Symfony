@@ -2,17 +2,6 @@ body {
     padding-top: 50px;
 }
 
-@media (max-width: 767px){
-    .navbar-collapse .navbar-nav.pull-right {
-        float: none!important;
-        margin-left: 0;
-    }
-
-    .navbar-nav {
-        margin: 7.5px 0px;
-    }
-}
-
 .lead .img {
     text-decoration: none;
     color: black;
@@ -84,4 +73,29 @@ form div input[type=text],  form div input[type=number]{
     padding: 10px 10px 10px 20px;
     font-size: 14px;
     margin-top: 1em;
+}
+
+@media (max-width: 767px){
+    .navbar-collapse .navbar-nav.pull-right {
+        float: none!important;
+        margin-left: 0;
+    }
+
+    .navbar-nav {
+        margin: 7.5px 0px;
+    }
+
+    form div input[type=text],  form div input[type=number]{
+        display: inherit;
+        width: 100%;
+    }
+
+    .selectfield {
+        text-align: left;
+        display: inherit;
+        width: 100%;
+    }
+    form div label {
+        min-width: inherit;
+    }
 }
