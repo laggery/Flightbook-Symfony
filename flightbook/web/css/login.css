@@ -1,3 +1,9 @@
+.login-small {
+    display: none;
+}
+.cancel-link {
+    display: none;
+}
 /***  Navigation bar ***/
 .navbar {
     padding-top: 1em;
@@ -38,6 +44,34 @@ svg {
 }
 
 @media (max-width: 767px){
+    .navbar {
+        display: none
+    }
+    .login-small {
+        display: inherit;
+    }
+    .login-small h1 {
+        text-align: center;
+    }
+    .text-right {
+        display: none;
+        margin-top: 3em;
+    }
+    .text-left .app-links {
+        margin-top: 3em;
+    }
+    .cancel-link {
+        display: inherit;
+    }
+    .register-link, .cancel-link {
+        margin-top: 1em;
+        text-align: center;
+        color: blue;
+        cursor: pointer;
+    }
+    .register-link:hover, cancel-link:hover {
+        text-decoration: underline;
+    }
     .screen {
         display: none;
     }
