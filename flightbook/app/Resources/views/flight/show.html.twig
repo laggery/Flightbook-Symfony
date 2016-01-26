@@ -18,29 +18,29 @@
                 </tr>
                 <tr>
                     <th>{{ 'flight.start'|trans }}</th>
-                    <td>{{ flight.start.name }}</td>
+                    <td>{% if flight.start %}{{ flight.start.name }}{% else %}-{% endif %}</td>
                 </tr>
                 <tr>
                     <th>{{ 'flight.landing'|trans }}</th>
-                    <td>{{ flight.landing.name }}</td>
+                    <td>{% if flight.landing %}{{ flight.landing.name }}{% else %}-{% endif %}</td>
                 </tr>
                 <tr>
                     <th>{{ 'flight.time'|trans }}</th>
-                    <td>{% if flight.time %}{{ flight.time|date('H:i') }}{% endif %}</td>
+                    <td>{% if flight.time %}{{ flight.time|date('H:i') }}{% else %}-{% endif %}</td>
                 </tr>
                 {% if flight.glider.tandem %}
                     <tr>
                         <th>{{ 'flight.price'|trans }}</th>
-                        <td>{{ flight.price }}</td>
+                        <td>{% if flight.price %}{{ flight.price }}{% else %}-{% endif %}</td>
                     </tr>
                 {% endif %}
                 <tr>
                     <th>{{ 'flight.km'|trans }}</th>
-                    <td>{{ flight.km }}</td>
+                    <td>{% if flight.km %}{{ flight.km }}{% else %}-{% endif %}</td>
                 </tr>
                 <tr>
                     <th>{{ 'flight.description'|trans }}</th>
-                    <td>{{ flight.description }}</td>
+                    <td>{% if flight.description %}{{ flight.description }}{% else %}-{% endif %}</td>
                 </tr>
             </tbody>
         </table>

@@ -16,7 +16,9 @@
         </table>
     </div>
 
-    {{ form_start(delete_form) }}
-    <input class="delete-button btn btn-danger btn-lg" type="submit" value="{{ 'buttons.delete'|trans }}">
-    {{ form_end(delete_form) }}
+    {% if not isPlaceUsed %}
+        {{ form_start(delete_form) }}
+        <input class="delete-button btn btn-danger btn-lg" type="submit" value="{{ 'buttons.delete'|trans }}">
+        {{ form_end(delete_form) }}
+    {% endif %}
 {% endblock %}

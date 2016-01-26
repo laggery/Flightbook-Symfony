@@ -71,10 +71,14 @@ class GliderController extends Controller
     public function showAction(Glider $glider)
     {
         $deleteForm = $this->createDeleteForm($glider);
+        
+        $em = $this->getDoctrine()->getManager();
+        $isGliderUsed = $em->getRepository('AppBundle:Flight')->isGliderUsed($this->getUser()->getId(), $glider->getId());
 
         return $this->render('glider/show.html.twig', array(
             'glider' => $glider,
             'delete_form' => $deleteForm->createView(),
+            'isGliderUsed' => $isGliderUsed
         ));
     }
 
