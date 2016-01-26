@@ -2,17 +2,156 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="fr" datatype="plaintext" original="file.ext">
         <body>
+            <!-- Flight traduction -->
             <trans-unit id="1">
                 <source>flights</source>
                 <target>Vols</target>
             </trans-unit>
             <trans-unit id="2">
+                <source>flight</source>
+                <target>Vol</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>flight.glider</source>
+                <target>Parapente</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>flight.date</source>
+                <target>Date</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>flight.start</source>
+                <target>Décollage</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>flight.landing</source>
+                <target>Atterissage</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>flight.time</source>
+                <target>Temps</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>flight.km</source>
+                <target>Km</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>flight.description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>flight.price</source>
+                <target>Prix</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>flight.add</source>
+                <target>Nouveau vol</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>flight.edit</source>
+                <target>Modifier vol</target>
+            </trans-unit>
+            
+            <!-- Glider traduction -->
+            <trans-unit id="20">
                 <source>gliders</source>
                 <target>Parapentes</target>
             </trans-unit>
-            <trans-unit id="3">
+            <trans-unit id="21">
+                <source>glider</source>
+                <target>Parapente</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>glider.buydate</source>
+                <target>Date d'achat</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>glider.brand</source>
+                <target>Marque</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>glider.name</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>glider.tandem</source>
+                <target>Tandem</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>glider.add</source>
+                <target>Nouveau parapente</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>glider.edit</source>
+                <target>Modifier parapente</target>
+            </trans-unit>
+            
+            <!-- Glider traduction -->
+            <trans-unit id="40">
                 <source>places</source>
                 <target>Lieux</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>place</source>
+                <target>Lieu</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>place.name</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>place.add</source>
+                <target>Nouveau lieu</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>place.edit</source>
+                <target>Modifier lieu</target>
+            </trans-unit>
+            
+            <!-- Button traduction -->
+            <trans-unit id="60">
+                <source>buttons.register</source>
+                <target>Créer un compte!</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>buttons.save</source>
+                <target>Sauvegarder</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>buttons.delete</source>
+                <target>Effacer</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>buttons.cancel</source>
+                <target>Annuler</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>buttons.edit</source>
+                <target>Modifier</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>buttons.add</source>
+                <target>Ajouter</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>buttons.logout</source>
+                <target>Déconnexion</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>buttons.backlist</source>
+                <target>Retour à la liste</target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>buttons.backdetails</source>
+                <target>Retour au détail</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>buttons.yes</source>
+                <target>Oui</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>buttons.no</source>
+                <target>Non</target>
             </trans-unit>
         </body>
     </file>

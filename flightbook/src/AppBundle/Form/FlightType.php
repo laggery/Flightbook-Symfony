@@ -26,38 +26,46 @@ class FlightType extends AbstractType {
                     'class' => 'AppBundle:Glider',
                     'attr' => array('class' => 'selectfield'),
                     'query_builder' => function (EntityRepository $er) use ($user) {
-                        return $er->createQueryBuilder('g')
-                                ->where('g.user =' . $user->getId());
-                    },
+                return $er->createQueryBuilder('g')
+                        ->where('g.user =' . $user->getId());
+            },
                     'required' => true,
                     'placeholder' => '',
-                    'empty_data'  => null
+                    'label' => 'flight.glider',
+                    'empty_data' => null
                 ))
                 ->add('date', DateType::class, array(
                     'input' => 'datetime',
                     'widget' => 'choice',
                     'format' => 'dd.MM.yyyy',
+                    'label' => 'flight.date',
                     'attr' => array('class' => 'dateSelectfield')))
                 ->add('time', TimeType::class, array(
                     'input' => 'datetime',
                     'widget' => 'choice',
+                    'label' => 'flight.time',
                     'required' => false,
                     'attr' => array('class' => 'timeSelectfield')))
                 ->add('start', EntityType::class, array(
                     'class' => 'AppBundle:Place',
                     'attr' => array('class' => 'selectfield'),
                     'query_builder' => $placesFunction,
+                    'label' => 'flight.start',
                     'required' => false,
                 ))
                 ->add('landing', EntityType::class, array(
                     'class' => 'AppBundle:Place',
                     'attr' => array('class' => 'selectfield'),
                     'query_builder' => $placesFunction,
+                    'label' => 'flight.landing',
                     'required' => false,
                 ))
-                ->add('price')
-                ->add('km')
-                ->add('description');
+                ->add('price', null, array(
+                    'label' => 'flight.price'))
+                ->add('km', null, array(
+                    'label' => 'flight.km'))
+                ->add('description', null, array(
+                    'label' => 'flight.description'));
     }
 
     /**

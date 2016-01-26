@@ -1,27 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Glider</h1>
+    <h1>{{ 'glider'|trans }}</h1>
 
-    <p><a class="edit-button btn btn-primary btn-lg" href="{{ path('glider_edit', { 'id': glider.id }) }}">Edit</a></p>
+    <p><a class="edit-button btn btn-primary btn-lg" href="{{ path('glider_edit', { 'id': glider.id }) }}">{{ 'buttons.edit'|trans }}</a></p>
 
     <div class="lead place">
         <table class="table table-striped">
             <tbody>
                 <tr>
-                    <th>Buydate</th>
+                    <th>{{ 'glider.buydate'|trans }}</th>
                     <td>{% if glider.buyDate %}{{ glider.buyDate|date('d.m.Y') }}{% else %}-{% endif %}</td>
                 </tr>
                 <tr>
-                    <th>Brand</th>
+                    <th>{{ 'glider.brand'|trans }}</th>
                     <td>{{ glider.brand }}</td>
                 </tr>
                 <tr>
-                    <th>Name</th>
+                    <th>{{ 'glider.name'|trans }}</th>
                     <td>{{ glider.name }}</td>
                 </tr>
                 <tr>
-                    <th>Tandem</th>
+                    <th>{{ 'glider.tandem'|trans }}</th>
                     <td>{% if glider.tandem %}Yes{% else %}No{% endif %}</td>
                 </tr>
             </tbody>
@@ -29,6 +29,6 @@
     </div>
 
     {{ form_start(delete_form) }}
-    <input class="delete-button btn btn-danger btn-lg" type="submit" value="Delete">
+    <input class="delete-button btn btn-danger btn-lg" type="submit" value="{{ 'buttons.delete'|trans }}">
     {{ form_end(delete_form) }}
 {% endblock %}

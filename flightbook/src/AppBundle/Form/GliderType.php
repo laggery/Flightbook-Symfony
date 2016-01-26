@@ -19,10 +19,14 @@ class GliderType extends AbstractType {
                     'required' => false,
                     'widget' => 'choice',
                     'format' => 'dd.MM.yyyy',
+                    'label' => 'glider.buydate',
                     'attr' => array('class' => 'dateSelectfield')))
-                ->add('brand')
-                ->add('name')
-                ->add('tandem');
+                ->add('brand', null, array(
+                    'label' => 'glider.brand'))
+                ->add('name', null, array(
+                    'label' => 'glider.name'))
+                ->add('tandem', null, array(
+                    'label' => 'glider.tandem'));
     }
 
     /**

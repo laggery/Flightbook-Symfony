@@ -2,12 +2,12 @@
 {% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
 
 {% block body %}
-    <h1>Place edit</h1>
+    <h1>{{ 'place.edit'|trans }}</h1>
     
-    <a class="save-button btn btn-primary btn-lg" href="{{ path('place_show', { 'id': place.id }) }}">Back to details</a>
+    <a class="save-button btn btn-primary btn-lg" href="{{ path('place_show', { 'id': place.id }) }}">{{ 'buttons.backdetails'|trans }}</a>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input class="save-button btn btn-success btn-lg" type="submit" value="Save" />
+        <input class="save-button btn btn-success btn-lg" type="submit" value="{{ 'buttons.save'|trans }}" />
     {{ form_end(edit_form) }}
 {% endblock %}

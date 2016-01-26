@@ -2,12 +2,12 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block body %}
-    <h1>Place creation</h1>
+    <h1>{{ 'place.add'|trans }}</h1>
 
-    <a class="save-button btn btn-primary btn-lg" href="{{ path('place_index') }}">Back to the list</a>
+    <a class="save-button btn btn-primary btn-lg" href="{{ path('place_index') }}">{{ 'buttons.backlist'|trans }}</a>
     
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input class="save-button btn btn-success btn-lg" type="submit" value="Save" />
+        <input class="save-button btn btn-success btn-lg" type="submit" value="{{ 'buttons.save'|trans }}" />
     {{ form_end(form) }}
 {% endblock %}

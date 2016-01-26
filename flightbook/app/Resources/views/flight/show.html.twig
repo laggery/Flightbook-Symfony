@@ -1,51 +1,51 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Flight</h1>
+    <h1>{{ 'flight'|trans }}</h1>
 
-    <p><a class="edit-button btn btn-primary btn-lg" href="{{ path('flight_edit', { 'id': flight.id }) }}">Edit</a></p>
+    <p><a class="edit-button btn btn-primary btn-lg" href="{{ path('flight_edit', { 'id': flight.id }) }}">{{ 'buttons.edit'|trans }}</a></p>
 
     <div class="lead place">
         <table class="table table-striped">
             <tbody>
                 <tr>
-                    <th>Glider</th>
+                    <th>{{ 'flight.glider'|trans }}</th>
                     <td>{{ flight.glider.brand }} {{ flight.glider.name }}</td>
                 </tr>
                 <tr>
-                    <th>Date</th>
+                    <th>{{ 'flight.date'|trans }}</th>
                     <td>{% if flight.date %}{{ flight.date|date('d.m.Y') }}{% endif %}</td>
                 </tr>
                 <tr>
-                    <th>Start</th>
+                    <th>{{ 'flight.start'|trans }}</th>
                     <td>{{ flight.start.name }}</td>
                 </tr>
                 <tr>
-                    <th>Landing</th>
+                    <th>{{ 'flight.landing'|trans }}</th>
                     <td>{{ flight.landing.name }}</td>
                 </tr>
                 <tr>
-                    <th>Time</th>
+                    <th>{{ 'flight.time'|trans }}</th>
                     <td>{% if flight.time %}{{ flight.time|date('H:i') }}{% endif %}</td>
                 </tr>
                 {% if flight.glider.tandem %}
                     <tr>
-                        <th>Price</th>
+                        <th>{{ 'flight.price'|trans }}</th>
                         <td>{{ flight.price }}</td>
                     </tr>
                 {% endif %}
                 <tr>
-                    <th>Km</th>
+                    <th>{{ 'flight.km'|trans }}</th>
                     <td>{{ flight.km }}</td>
                 </tr>
                 <tr>
-                    <th>Description</th>
+                    <th>{{ 'flight.description'|trans }}</th>
                     <td>{{ flight.description }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
     {{ form_start(delete_form) }}
-    <input class="delete-button btn btn-danger btn-lg" type="submit" value="Delete">
+    <input class="delete-button btn btn-danger btn-lg" type="submit" value="{{ 'buttons.delete'|trans }}">
     {{ form_end(delete_form) }}
 {% endblock %}

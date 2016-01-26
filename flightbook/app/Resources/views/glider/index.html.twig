@@ -3,7 +3,7 @@
 {% block body %}
     <h1>{{ 'gliders'|trans }}</h1>
 
-    <p><a class="btn btn-primary btn-lg" href="{{ path('glider_new') }}">Add</a></p>
+    <p><a class="btn btn-primary btn-lg" href="{{ path('glider_new') }}">{{ 'buttons.add'|trans }}</a></p>
     <div class="lead place">
         {% if gliders|length > 0 %}
         <table class="table table-striped">
@@ -11,10 +11,10 @@
                 <tr>
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
-                    <th>Buydate</th>
-                    <th>Brand</th>
-                    <th>Name</th>
-                    <th>Tandem</th>
+                    <th>{{ 'glider.buydate'|trans }}</th>
+                    <th>{{ 'glider.brand'|trans }}</th>
+                    <th>{{ 'glider.name'|trans }}</th>
+                    <th>{{ 'glider.tandem'|trans }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +29,7 @@
                         {% endif %}
                         <td>{{ glider.brand }}</td>
                         <td>{{ glider.name }}</td>
-                        <td>{% if glider.tandem %}Yes{% else %}No{% endif %}</td>
+                        <td>{% if glider.tandem %}{{ 'buttons.yes'|trans }}{% else %}{{ 'buttons.no'|trans }}{% endif %}</td>
                     </tr>
                 {% endfor %}
             </tbody>
