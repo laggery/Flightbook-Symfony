@@ -45,23 +45,23 @@
                 </div>
             </div>
             <div class="text-right">
-                <h2>Register</h2>
+                <h2>{{ 'registration.submit'|trans }}</h2>
                 <form class="form" action="{{ path("fos_user_registration_register") }}" method="post">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
                     <div class="form-group">
-                        <input class="form-control" placeholder="Firstname" type="text" id="firstname" name="_firstname" required="required" />
+                        <input class="form-control" placeholder="{{ 'user.firstname'|trans({},'messages') }}" type="text" id="firstname" name="_firstname" required="required" />
                     </div>
                     <div class="form-group">
-                        <input class="form-control" placeholder="Lastname" type="text" id="lastname" name="_lastname" required="required" />
+                        <input class="form-control" placeholder="{{ 'user.lastname'|trans({},'messages') }}" type="text" id="lastname" name="_lastname" required="required" />
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" for="username">{{ 'security.login.username'|trans }}</label>
-                        <input class="form-control" placeholder="Email" type="text" id="username" name="_email" required="required" />
+                        <label class="sr-only" for="email">{{ 'user.email'|trans({},'messages') }}</label>
+                        <input class="form-control" placeholder="{{ 'user.email'|trans({},'messages') }}" type="text" id="username" name="_email" required="required" />
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="password">{{ 'security.login.password'|trans }}</label>
-                        <input class="form-control" placeholder="Password" type="password" id="password" name="_password" required="required" />
+                        <input class="form-control" placeholder="{{ 'security.login.password'|trans }}" type="password" id="password" name="_password" required="required" />
                     </div>
 
                     <input class="btn btn-default" type="submit" id="_submit" name="_submit" value="{{ 'registration.submit'|trans }}" />
