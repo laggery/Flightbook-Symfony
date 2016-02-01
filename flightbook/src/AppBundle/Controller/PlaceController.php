@@ -14,22 +14,39 @@ use AppBundle\Form\PlaceType;
  *
  * @Route("/place")
  */
-class PlaceController extends Controller
-{
+class PlaceController extends Controller {
+
+    /**
+     * @Route("/autocomplete", name="place_autocomplete")
+     */
+    public function autocompleteAction(Request $request) {
+        $names = array();
+        $term = trim(strip_tags($request->get('term')));
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:Place')->autocomplete($this->getUser()->getId(), $term);
+
+        foreach ($entities as $entity) {
+            $names[] = $entity->getName();
+        }
+        
+        echo json_encode($names); die;
+    }
+
     /**
      * Lists all Place entities.
      *
      * @Route("/", name="place_index")
      * @Method("GET")
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $places = $em->getRepository('AppBundle:Place')->findBy(array('user' => $this->getUser()->getId()));
 
         return $this->render('place/index.html.twig', array(
-            'places' => $places,
+                    'places' => $places,
         ));
     }
 
@@ -39,8 +56,7 @@ class PlaceController extends Controller
      * @Route("/new", name="place_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
-    {
+    public function newAction(Request $request) {
         $place = new Place();
         $place->setUser($this->getUser());
         $form = $this->createForm(PlaceType::class, $place);
@@ -49,7 +65,7 @@ class PlaceController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $placeExist = $em->getRepository('AppBundle:Place')->findByName($this->getUser()->getId(), $place->getName());
-            if (count($placeExist)<1){
+            if (count($placeExist) < 1) {
                 $em->persist($place);
                 $em->flush();
                 return $this->redirectToRoute('place_show', array('id' => $place->getId()));
@@ -59,8 +75,8 @@ class PlaceController extends Controller
         }
 
         return $this->render('place/new.html.twig', array(
-            'place' => $place,
-            'form' => $form->createView(),
+                    'place' => $place,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -70,17 +86,16 @@ class PlaceController extends Controller
      * @Route("/{id}", name="place_show")
      * @Method("GET")
      */
-    public function showAction(Place $place)
-    {
+    public function showAction(Place $place) {
         $deleteForm = $this->createDeleteForm($place);
-        
+
         $em = $this->getDoctrine()->getManager();
         $isPlaceUsed = $em->getRepository('AppBundle:Flight')->isPlaceUsed($this->getUser()->getId(), $place->getId());
 
         return $this->render('place/show.html.twig', array(
-            'place' => $place,
-            'delete_form' => $deleteForm->createView(),
-            'isPlaceUsed' => $isPlaceUsed
+                    'place' => $place,
+                    'delete_form' => $deleteForm->createView(),
+                    'isPlaceUsed' => $isPlaceUsed
         ));
     }
 
@@ -90,8 +105,7 @@ class PlaceController extends Controller
      * @Route("/{id}/edit", name="place_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Place $place)
-    {
+    public function editAction(Request $request, Place $place) {
         $deleteForm = $this->createDeleteForm($place);
         $editForm = $this->createForm(PlaceType::class, $place);
         $editForm->handleRequest($request);
@@ -99,7 +113,7 @@ class PlaceController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $placeExist = $em->getRepository('AppBundle:Place')->findByName($this->getUser()->getId(), $place->getName());
-            if (count($placeExist)<1){
+            if (count($placeExist) < 1) {
                 $em->persist($place);
                 $em->flush();
                 return $this->redirectToRoute('place_show', array('id' => $place->getId()));
@@ -111,9 +125,9 @@ class PlaceController extends Controller
         }
 
         return $this->render('place/edit.html.twig', array(
-            'place' => $place,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'place' => $place,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -123,8 +137,7 @@ class PlaceController extends Controller
      * @Route("/{id}", name="place_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Place $place)
-    {
+    public function deleteAction(Request $request, Place $place) {
         $form = $this->createDeleteForm($place);
         $form->handleRequest($request);
 
@@ -144,12 +157,12 @@ class PlaceController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Place $place)
-    {
+    private function createDeleteForm(Place $place) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('place_delete', array('id' => $place->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('place_delete', array('id' => $place->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }

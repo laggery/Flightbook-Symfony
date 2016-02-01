@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Flight;
+use AppBundle\Entity\Place;
 use AppBundle\Form\FlightType;
 
 /**
@@ -46,6 +47,7 @@ class FlightController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $flight = $this->savePlace($flight);
             $em = $this->getDoctrine()->getManager();
             $em->persist($flight);
             $em->flush();
@@ -82,10 +84,13 @@ class FlightController extends Controller {
      */
     public function editAction(Request $request, Flight $flight) {
         $deleteForm = $this->createDeleteForm($flight);
+        $flight->setStartText($flight->getStart()->getName());
+        $flight->setLandingText($flight->getLanding()->getName());
         $editForm = $this->createForm(FlightType::class, $flight);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $flight = $this->savePlace($flight);
             $em = $this->getDoctrine()->getManager();
             $em->persist($flight);
             $em->flush();
@@ -133,5 +138,40 @@ class FlightController extends Controller {
                         ->getForm()
         ;
     }
-
+    
+    private function savePlace(Flight $flight) {
+        $em = $this->getDoctrine()->getManager();
+        if ($flight->getStartText() != '') {
+            $place = $em->getRepository('AppBundle:Place')->findSingleResultByName($this->getUser()->getId(), $flight->getStartText());
+            if ($place) {
+                $flight->setStart($place);
+            } else {
+                $place = new Place();
+                $place->setName($flight->getStartText());
+                $place->setUser($flight->getUser());
+                $em->persist($place);
+                $em->flush();
+                $flight->setStart($place);
+            }
+        } else {
+            $flight->setStart(null);
+        }
+        if ($flight->getLandingText() != '') {
+            $place = $em->getRepository('AppBundle:Place')->findSingleResultByName($this->getUser()->getId(), $flight->getLandingText());
+            if ($place) {
+                $flight->setLanding($place);
+            } else {
+                $place = new Place();
+                $place->setName($flight->getLandingText());
+                $place->setUser($flight->getUser());
+                $em->persist($place);
+                $em->flush();
+                $flight->setLanding($place);
+            }
+        } else {
+            $flight->setLanding(null);
+        }
+        
+        return $flight;
+    }
 }

@@ -72,3 +72,27 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\User
+    
+    profile:
+        form:
+            type:               FOS\UserBundle\Form\Type\ProfileFormType # or 'fos_user_profile' on Symfony < 2.8
+            name:               fos_user_profile_form
+            validation_groups:  [Profile, Default]
+            
+    change_password:
+        form:
+            type:               FOS\UserBundle\Form\Type\ChangePasswordFormType # or 'fos_user_change_password' on Symfony < 2.8
+            name:               fos_user_change_password_form
+            validation_groups:  [ChangePassword, Default]
+            
+    resetting:
+        token_ttl: 86400
+        email:
+            from_email: # Use this node only if you don't want the global email address for the resetting email
+                address:        ...
+                sender_name:    ...
+            template:   FOSUserBundle:Resetting:email.txt.twig
+        form:
+            type:               FOS\UserBundle\Form\Type\ResettingFormType # or 'fos_user_resetting' on Symfony < 2.8
+            name:               fos_user_resetting_form
+            validation_groups:  [ResetPassword, Default]

@@ -19,4 +19,22 @@ class PlaceRepository extends EntityRepository {
                 ->getQuery()
                 ->execute();
     }
+    
+    public function findSingleResultByName($userId, $name) {
+        return $this->createQueryBuilder('p')
+                ->where("p.name ='" . $name . "'")
+                ->andWhere("p.user =" .$userId)
+                ->getQuery()
+                ->setMaxResults(1)
+                ->getOneOrNullResult();
+    }
+    
+    public function autocomplete($userId, $name){
+        return $this->createQueryBuilder('p')        
+                ->where('p.name LIKE :name')
+                ->setParameter('name', '%' . $name . '%')
+                ->andWhere("p.user =" .$userId)
+                ->getQuery()
+                ->getResult();
+    }
 }

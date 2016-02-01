@@ -75,6 +75,8 @@ class Flight {
      * })
      */
     private $start;
+    
+    private $startText;
 
     /**
      * @var \Place
@@ -85,6 +87,8 @@ class Flight {
      * })
      */
     private $landing;
+    
+    private $landingText;
 
     /**
      * @var \User
@@ -256,6 +260,19 @@ class Flight {
 
         return $this;
     }
+    
+    /**
+     * Set landingtext
+     *
+     * @param $landingText
+     *
+     * @return Flight
+     */
+    public function setLandingText($landingText = null) {
+        $this->landingText = $landingText;
+
+        return $this;
+    }
 
     /**
      * Get landing
@@ -264,6 +281,15 @@ class Flight {
      */
     public function getLanding() {
         return $this->landing;
+    }
+    
+    /**
+     * Get landingText
+     *
+     * @return String
+     */
+    public function getLandingText() {
+        return $this->landingText;
     }
 
     /**
@@ -278,6 +304,19 @@ class Flight {
 
         return $this;
     }
+    
+    /**
+     * Set startText
+     *
+     * @param $startText
+     *
+     * @return Flight
+     */
+    public function setStartText($startText = null) {
+        $this->startText = $startText;
+
+        return $this;
+    }
 
     /**
      * Get start
@@ -286,6 +325,15 @@ class Flight {
      */
     public function getStart() {
         return $this->start;
+    }
+    
+    /**
+     * Get startText
+     *
+     * @return String
+     */
+    public function getStartText() {
+        return $this->startText;
     }
 
     /**
