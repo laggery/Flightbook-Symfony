@@ -26,8 +26,7 @@ class FlightController extends Controller {
     public function indexAction() {
         $em = $this->getDoctrine()->getManager();
         $flights = $em->getRepository('AppBundle:Flight')->findBy(
-                array('user' => $this->getUser()->getId()),
-                array('date' => 'DESC'));
+                array('user' => $this->getUser()->getId()), array('date' => 'DESC'));
 
         return $this->render('flight/index.html.twig', array(
                     'flights' => $flights,
@@ -84,8 +83,12 @@ class FlightController extends Controller {
      */
     public function editAction(Request $request, Flight $flight) {
         $deleteForm = $this->createDeleteForm($flight);
-        $flight->setStartText($flight->getStart()->getName());
-        $flight->setLandingText($flight->getLanding()->getName());
+        if ($flight->getStart()) {
+            $flight->setStartText($flight->getStart()->getName());
+        }
+        if ($flight->getLanding()) {
+            $flight->setLandingText($flight->getLanding()->getName());
+        }
         $editForm = $this->createForm(FlightType::class, $flight);
         $editForm->handleRequest($request);
 
@@ -138,7 +141,7 @@ class FlightController extends Controller {
                         ->getForm()
         ;
     }
-    
+
     private function savePlace(Flight $flight) {
         $em = $this->getDoctrine()->getManager();
         if ($flight->getStartText() != '') {
@@ -171,7 +174,8 @@ class FlightController extends Controller {
         } else {
             $flight->setLanding(null);
         }
-        
+
         return $flight;
     }
+
 }
