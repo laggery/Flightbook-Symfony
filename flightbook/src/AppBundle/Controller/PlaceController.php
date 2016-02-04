@@ -70,7 +70,7 @@ class PlaceController extends Controller {
                 $em->flush();
                 return $this->redirectToRoute('place_show', array('id' => $place->getId()));
             } else {
-                $this->addFlash('error', 'This place already exists!');
+                $this->addFlash('error', $this->get('translator')->trans('message.placeExist'));
             }
         }
 
@@ -120,7 +120,7 @@ class PlaceController extends Controller {
             } elseif ($place->getId() == $placeExist[0]->getId()) {
                 return $this->redirectToRoute('place_show', array('id' => $place->getId()));
             } else {
-                $this->addFlash('error', 'This place already exists!');
+                $this->addFlash('error', $this->get('translator')->trans('message.placeExist'));
             }
         }
 

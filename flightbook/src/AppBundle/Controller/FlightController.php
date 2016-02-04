@@ -109,6 +109,23 @@ class FlightController extends Controller {
     }
 
     /**
+     * Displays a form to edit an existing Flight entity.
+     *
+     * @Route("/{id}/copy", name="flight_copy")
+     * @Method({"GET", "POST"})
+     */
+    public function copyAction(Request $request, Flight $flight) {
+        $copy = clone $flight;
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($copy);
+        $em->flush();
+        
+        $this->addFlash('notice', $this->get('translator')->trans('message.copyFlight'));
+        
+        return $this->redirectToRoute('flight_show', array('id' => $copy->getId()));
+    }
+
+    /**
      * Deletes a Flight entity.
      *
      * @Route("/{id}", name="flight_delete")

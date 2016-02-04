@@ -51,6 +51,10 @@
                 <source>flight.edit</source>
                 <target>Flug ändern</target>
             </trans-unit>
+            <trans-unit id="13">
+                <source>flight.more</source>
+                <target>Weitere flüge</target>
+            </trans-unit>
             
             <!-- Glider traduction -->
             <trans-unit id="20">
@@ -153,6 +157,10 @@
                 <source>buttons.no</source>
                 <target>Nein</target>
             </trans-unit>
+            <trans-unit id="71">
+                <source>buttons.copy</source>
+                <target>Kopieren</target>
+            </trans-unit>
             
             <!-- User traduction -->
             <trans-unit id="90">
@@ -166,6 +174,16 @@
             <trans-unit id="92">
                 <source>user.email</source>
                 <target>Email</target>
+            </trans-unit>
+            
+            <!-- Message traduction -->
+            <trans-unit id="110">
+                <source>message.copyFlight</source>
+                <target>Der Flug wurde erfolgreich kopiert!</target>
+            </trans-unit>
+            <trans-unit id="111">
+                <source>message.placeExist</source>
+                <target>Dieser Ort existiert bereits!</target>
             </trans-unit>
         </body>
     </file>

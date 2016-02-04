@@ -75,6 +75,11 @@ form div input[type=text],  form div input[type=number]{
     margin-top: 1em;
 }
 
+/******* flight ********************/
+#moreFlights {
+    text-align: left
+}
+
 /******* autocomplete style ********/
 .ui-autocomplete {
     position: absolute;

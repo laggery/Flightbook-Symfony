@@ -48,4 +48,8 @@
     {{ form_start(delete_form) }}
     <input class="delete-button btn btn-danger btn-lg" type="submit" value="{{ 'buttons.delete'|trans }}">
     {{ form_end(delete_form) }}
+    
+    <h3 id="moreFlights">{{ 'flight.more'|trans }}</h3>
+    <p><a class="edit-button btn btn-primary btn-lg" href="{{ path('flight_new') }}">{{ 'buttons.add'|trans }}</a></p>
+    <p><a class="edit-button btn btn-primary btn-lg" href="{{ path('flight_copy', { 'id': flight.id }) }}">{{ 'buttons.copy'|trans }}</a></p>
 {% endblock %}
