@@ -55,6 +55,14 @@
                 <source>flight.more</source>
                 <target>Autres vols</target>
             </trans-unit>
+            <trans-unit id="14">
+                <source>flight.from</source>
+                <target>Du</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>flight.to</source>
+                <target>Au</target>
+            </trans-unit>
             
             <!-- Glider traduction -->
             <trans-unit id="20">
@@ -88,6 +96,18 @@
             <trans-unit id="27">
                 <source>glider.edit</source>
                 <target>Modifier parapente</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>glider.type</source>
+                <target>Type</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>glider.solo</source>
+                <target>Solo</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>glider.tandem</source>
+                <target>Tandem</target>
             </trans-unit>
             
             <!-- Glider traduction -->
@@ -160,6 +180,14 @@
             <trans-unit id="71">
                 <source>buttons.copy</source>
                 <target>Copier</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>buttons.filter</source>
+                <target>Filtre</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>buttons.clear</source>
+                <target>Effacer</target>
             </trans-unit>
             
             <!-- User traduction -->

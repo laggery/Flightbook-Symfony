@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Flight;
 use AppBundle\Entity\Place;
 use AppBundle\Form\FlightType;
+use AppBundle\Filter\FlightFilterType;
 
 /**
  * Flight controller.
@@ -23,13 +24,26 @@ class FlightController extends Controller {
      * @Route("/", name="flight_index")
      * @Method("GET")
      */
-    public function indexAction() {
+    public function indexAction(Request $request) {
+        $form = $this->createForm(FlightFilterType::class);
+        
         $em = $this->getDoctrine()->getManager();
-        $flights = $em->getRepository('AppBundle:Flight')->findBy(
-                array('user' => $this->getUser()->getId()), array('date' => 'DESC'));
+        $filterBuilder = $em->getRepository('AppBundle:Flight')->createQueryBuilder('f');
+        $filterBuilder->innerJoin('f.glider', 'g')->where("f.user =" . $this->getUser()->getId())->orderBy('f.date', 'desc');
+
+        if ($request->query->has($form->getName())) {
+            $form->submit($request->query->get($form->getName()));
+
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+            
+//            var_dump($filterBuilder->getDql()); die;
+        }
+        
+        $flights = $filterBuilder->getQuery()->execute();
 
         return $this->render('flight/index.html.twig', array(
                     'flights' => $flights,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -119,9 +133,9 @@ class FlightController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $em->persist($copy);
         $em->flush();
-        
+
         $this->addFlash('notice', $this->get('translator')->trans('message.copyFlight'));
-        
+
         return $this->redirectToRoute('flight_show', array('id' => $copy->getId()));
     }
 

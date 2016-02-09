@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block body %}
     <h1>{{ 'gliders'|trans }}</h1>
+    
+    <fieldset id="filter">
+        <legend><i class="glyphicon glyphicon-chevron-down"></i> {{ 'buttons.filter'|trans }}</legend>
+        <form method="get" action=".">
+            {{ form_rest(form) }}
+            <input class="btn btn-primary btn" type="submit" name="submit-filter" value="{{ 'buttons.filter'|trans }}" />
+        </form>
+    </fieldset>
 
     <p><a class="btn btn-primary btn-lg" href="{{ path('glider_new') }}">{{ 'buttons.add'|trans }}</a></p>
     <div class="lead place">

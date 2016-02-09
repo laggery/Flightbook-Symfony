@@ -5,10 +5,28 @@ $(document).ready(function () {
     $('#glider_tandem').appendTo(".form-group:last");
     $('#glider .checkbox').hide();
 
+    $('.form-group:nth-child(1) label').insertBefore("#flight_filter_date_left_date");
+    $('.filter-date-range label').clone().insertBefore("#flight_filter_date_right_date").text($('#toAck').text());
+
     // autocomplete start and landing
     $("#flight_startText, #flight_landingText").autocomplete({
         source: "../place/autocomplete",
         minLength: 2
+    });
+
+    //Permet de cacher le filtre si on clique sur la legende
+    var close = true;
+    $('#filter legend').click(function () {
+        if (close) {
+            $('#filter .glyphicon').removeClass('glyphicon-chevron-down');
+            $('#filter .glyphicon').addClass('glyphicon-chevron-up');
+            close = false;
+        } else {
+            $('#filter .glyphicon').removeClass('glyphicon-chevron-up');
+            $('#filter .glyphicon').addClass('glyphicon-chevron-down');
+            close = true;
+        }
+        $(this).siblings().stop().slideToggle('slow', function () {});
     });
 
 });

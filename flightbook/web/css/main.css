@@ -80,6 +80,52 @@ form div input[type=text],  form div input[type=number]{
     text-align: left
 }
 
+/******* Filter ********************/
+fieldset {
+    display: block;
+    -webkit-margin-start: 2px;
+    -webkit-margin-end: 2px;
+    -webkit-padding-before: 0.35em;
+    -webkit-padding-start: 0.75em;
+    -webkit-padding-end: 0.75em;
+    -webkit-padding-after: 0.625em;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    min-width: -webkit-min-content;
+    border: 2px groove threedface;
+}
+#filter {
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+#filter legend {
+    width: auto;
+    text-align: left;
+    border: 0;
+    cursor: pointer;
+}
+#filter form {
+    display: none;
+}
+#toAck {
+    display: none;
+}
+.filter-date-range {
+    text-align: left;
+}
+#filter input[type=submit] {
+    float: left;
+    margin-left: 0.5em;
+}
+#filter button[type=reset] {
+    float: left;
+    margin-left: 13.7em;
+}
+
+
 /******* autocomplete style ********/
 .ui-autocomplete {
     position: absolute;
@@ -164,5 +210,11 @@ form div input[type=text],  form div input[type=number]{
     }
     form div label {
         min-width: inherit;
+    }
+    #gliderArck {
+        margin-left: 0em;
+    }
+    #filter button[type=reset] {
+        margin-left: 0em; 
     }
 }
