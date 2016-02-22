@@ -213,6 +213,28 @@
                 <source>message.placeExist</source>
                 <target>Ce lieu existe déjà!</target>
             </trans-unit>
+            
+            <!-- Statistics traduction -->
+            <trans-unit id="140">
+                <source>statistics</source>
+                <target>Statistiques</target>
+            </trans-unit>
+            <trans-unit id="141">
+                <source>statistic.nbflight</source>
+                <target>Nombre de vols:</target>
+            </trans-unit>
+            <trans-unit id="142">
+                <source>statistic.flighthour</source>
+                <target>Heures de vols:</target>
+            </trans-unit>
+            <trans-unit id="143">
+                <source>statistic.average</source>
+                <target>Temps moyen:</target>
+            </trans-unit>
+            <trans-unit id="144">
+                <source>statistic.price</source>
+                <target>Revenu:</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

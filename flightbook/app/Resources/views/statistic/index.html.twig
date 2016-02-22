@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'statistics'|trans }}</h1>
+    
+    <p id="toAck">{{ 'flight.to'|trans }}</p>
+    <fieldset id="filter">
+        <legend><i class="glyphicon glyphicon-chevron-down"></i> {{ 'buttons.filter'|trans }}</legend>
+        <form method="get" action=".">
+            {{ form_rest(form) }}
+            <input class="btn btn-primary btn" type="submit" name="submit-filter" value="{{ 'buttons.filter'|trans }}" />
+        </form>
+    </fieldset>  
+        
+            <div class="stat-value">
+                <p>{{ 'statistic.nbflight'|trans }} {{ nbFlight }}</p>
+                <p>{{ 'statistic.flighthour'|trans }} {{ totalTime }}</p>
+                <p>{{ 'statistic.average'|trans }} {{ average }}</p>
+                <p>{{ 'statistic.price'|trans }} {{ income }}</p>
+            </div>
+{% endblock %}
