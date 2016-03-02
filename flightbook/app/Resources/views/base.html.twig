@@ -34,7 +34,7 @@
                         <li id="place_menu" class="{% if module[0] == 'statistics' %}active{% endif %} base_menu"><a href="/{{ app.request.locale }}/statistic/">{{ 'statistics'|trans }}</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
-                        <li id="logout_menu" class="base_menu"><a href="/logout">{{ 'buttons.logout'|trans }}</a></li>
+                        <li id="logout_menu" class="base_menu"><a href="/{{ app.request.locale }}/logout">{{ 'buttons.logout'|trans }}</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

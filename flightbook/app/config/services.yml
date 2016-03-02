@@ -7,12 +7,12 @@ services:
     password_encoder:
         class: AppBundle\Service\PasswordEncoder
         
-    app.locale_listener:
-        class: AppBundle\EventListener\LocaleListener
-        arguments: ['%kernel.default_locale%']
-        tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
-            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+#    app.locale_listener:
+#        class: AppBundle\EventListener\LocaleListener
+#        arguments: ['%kernel.default_locale%']
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+#            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
