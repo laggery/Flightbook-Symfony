@@ -103,8 +103,8 @@ fos_user:
         token_ttl: 86400
         email:
             from_email: # Use this node only if you don't want the global email address for the resetting email
-                address:        ...
-                sender_name:    ...
+                address:        admin@flightbook.ch
+                sender_name:    Yannick Lagger
             template:   FOSUserBundle:Resetting:email.txt.twig
         form:
             type:               FOS\UserBundle\Form\Type\ResettingFormType # or 'fos_user_resetting' on Symfony < 2.8

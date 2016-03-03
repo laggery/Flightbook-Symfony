@@ -10,7 +10,7 @@ $(document).ready(function () {
         $('.app-links').show();
         $('.text-right').hide();
     });
-    
+
     $(window).resize(function () {
         if (window.innerWidth > 767) {
             $('.login-small').hide();
@@ -19,5 +19,20 @@ $(document).ready(function () {
         } else {
             $('.login-small').show();
         }
+    });
+
+    $("#reset").on('click', function () {
+        console.log("asd");
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/flight/rest/User/PasswordReset",
+            data: '{"email":"a@a.com"}',
+            success: function() {
+                console.log("yeah");
+            },
+            dataType: function() {
+                console.log("bad");
+            }
+        });
     });
 });
