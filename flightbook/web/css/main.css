@@ -1,23 +1,25 @@
 body {
     padding-top: 50px;
 }
-
 .lead .img {
     text-decoration: none;
     color: black;
     cursor: pointer; 
 }
-
 #form-button {
     margin-top: 1em;
 }
-
 table {
     text-align: left;
 }
-
 .edit-button, .delete-button, .save-button {
     width: 100%;
+}
+.lang {
+    width: 24px;
+}
+#logout_menu {
+    margin-left: 10px;
 }
 
 /* Formulaire style */
@@ -216,5 +218,13 @@ fieldset {
     }
     #filter button[type=reset] {
         margin-left: 0em; 
+    }
+
+    /**** language ****/
+    #de, #fr {
+        float: left;
+    }
+    #en {
+        margin-left: 50px;
     }
 }

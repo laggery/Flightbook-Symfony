@@ -98,6 +98,9 @@ svg {
     .text-center {
         margin-top: -2em;
     }
+    .lang {
+        padding-top: 8em;
+    }
 }
 
 /*flash message*/

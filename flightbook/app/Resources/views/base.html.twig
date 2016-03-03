@@ -34,6 +34,9 @@
                         <li id="place_menu" class="{% if module[0] == 'statistics' %}active{% endif %} base_menu"><a href="/{{ app.request.locale }}/statistic/">{{ 'statistics'|trans }}</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
+                        <li id="de" class="lang"><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'de'})) }}" title="DE"><img src="{{ asset('images/lang/de.png') }}" alt="DE" width="18px"></a></li>
+                        <li id="fr" class="lang"><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" title="FR"><img src="{{ asset('images/lang/fr.png') }}" alt="FR" width="18px"></a></li>
+                        <li id="en" class="lang"><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN"><img src="{{ asset('images/lang/en.png') }}" alt="EN" width="18px"></a></li>
                         <li id="logout_menu" class="base_menu"><a href="/{{ app.request.locale }}/logout">{{ 'buttons.logout'|trans }}</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
