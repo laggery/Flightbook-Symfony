@@ -39,6 +39,10 @@
     text-align: center;
 }
 
+.lang {
+    padding-top: 22em;
+}
+
 svg {
     vertical-align: middle;
 }
