@@ -74,8 +74,20 @@
                 <a href="/en/" title="EN"><img src="{{ asset('images/lang/en.png') }}" alt="EN"></a>
             </div>
         </div>
-            
-        <input type="email" name="email">
-        <button id="reset" type="button">Reset</button>
+        
+        <div class="reset">
+            <form class="form" action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                <div>
+                    {% if invalid_username is defined %}
+                        <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                    {% endif %}
+                    <label for="reset_email">{{ 'user.email'|trans({},'messages') }}</label>
+                    <input type="text" id="username" name="reset_email" required="required" />
+                </div>
+                <div>
+                    <input class="btn btn-default" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock fos_user_content %}

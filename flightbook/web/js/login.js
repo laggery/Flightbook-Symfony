@@ -20,19 +20,4 @@ $(document).ready(function () {
             $('.login-small').show();
         }
     });
-
-    $("#reset").on('click', function () {
-        console.log("asd");
-        $.ajax({
-            type: "POST",
-            url: "http://localhost/flight/rest/User/PasswordReset",
-            data: '{"email":"a@a.com"}',
-            success: function() {
-                console.log("yeah");
-            },
-            dataType: function() {
-                console.log("bad");
-            }
-        });
-    });
 });
