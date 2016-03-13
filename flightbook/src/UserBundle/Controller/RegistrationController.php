@@ -60,21 +60,16 @@ class RegistrationController extends Controller
         $user->setLastname($request->get('_lastname'));
         
         $form->setData($user);
-//        echo $event['_firstname'];
         
         $em = $this->getDoctrine()->getManager();
         
         $userExist = $em->getRepository('AppBundle:User')->findBy(array('email' => $user->getEmail()));
         if (count($userExist)>0){
-            $this->addFlash('error', 'This user already exists!');
-            return;
+            $this->addFlash('error', $this->get('translator')->trans('message.userExist', array(), 'messages'));
+            return $this->redirectToRoute('news_index');
         }
 
         $form->handleRequest($request);
-
-//        echo "<pre>";
-//        print_r($user);
-//        echo "</pre>"; die;
         
 //        if ($form->isValid()) {
             $event = new FormEvent($form, $request);
@@ -83,7 +78,8 @@ class RegistrationController extends Controller
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_registration_confirmed');
+                $this->addFlash('notice', $this->get('translator')->trans('message.welcome', array(), 'messages'));
+                $url = $this->generateUrl('news_index');
                 $response = new RedirectResponse($url);
             }
 

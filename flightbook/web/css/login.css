@@ -40,7 +40,7 @@
 }
 
 .lang {
-    padding-top: 22em;
+    padding-top: 24.5em;
 }
 
 svg {
@@ -127,4 +127,8 @@ svg {
     padding: 10px 10px 10px 20px;
     font-size: 14px;
     margin-top: 1em;
+}
+
+.lose-pwd {
+    margin-top: 0.6em;
 }

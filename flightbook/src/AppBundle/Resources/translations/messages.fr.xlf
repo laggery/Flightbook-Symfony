@@ -213,6 +213,22 @@
                 <source>message.placeExist</source>
                 <target>Ce lieu existe déjà!</target>
             </trans-unit>
+            <trans-unit id="112">
+                <source>message.forgot</source>
+                <target>Mot de passe oublié ?</target>
+            </trans-unit>
+            <trans-unit id="113">
+                <source>message.entermail</source>
+                <target>Saisissez votre adresse mail!</target>
+            </trans-unit>
+            <trans-unit id="114">
+                <source>message.userExist</source>
+                <target>Cet utilisateur existe déjà!</target>
+            </trans-unit>
+            <trans-unit id="115">
+                <source>message.welcome</source>
+                <target>Bienvenue! Votre compte à été créé avec succès!</target>
+            </trans-unit>
             
             <!-- Statistics traduction -->
             <trans-unit id="140">

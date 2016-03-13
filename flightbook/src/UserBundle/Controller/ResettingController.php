@@ -46,13 +46,15 @@ class ResettingController extends Controller {
         $user = $this->get('fos_user.user_manager')->findUserByUsernameOrEmail($username);
 
         if (null === $user) {
-            return $this->render('FOSUserBundle:Resetting:request.html.twig', array(
-                        'invalid_username' => $username
-            ));
+            $this->addFlash('error', $this->get('translator')->trans('resetting.request.invalid_username', array(
+                        "username" => $username
+                            ), 'FOSUserBundle'));
+            return $this->redirectToRoute('news_index');
         }
 
         if ($user->isPasswordRequestNonExpired($this->container->getParameter('fos_user.resetting.token_ttl'))) {
-            return $this->render('FOSUserBundle:Resetting:passwordAlreadyRequested.html.twig');
+            $this->addFlash('error', $this->get('translator')->trans('resetting.password_already_requested', array(), 'FOSUserBundle'));
+            return $this->redirectToRoute('news_index');
         }
 
         if (null === $user->getConfirmationToken()) {
@@ -65,8 +67,10 @@ class ResettingController extends Controller {
         $user->setPasswordRequestedAt(new \DateTime());
         $this->get('fos_user.user_manager')->updateUser($user);
 
-        return new RedirectResponse($this->generateUrl('fos_user_resetting_check_email', array('email' => $this->getObfuscatedEmail($user))
-        ));
+        $this->addFlash('notice', $this->get('translator')->trans('resetting.check_email', array(
+                    "email" => $this->getObfuscatedEmail($user)
+                        ), 'FOSUserBundle'));
+        return $this->redirectToRoute('news_index');
     }
 
     /**

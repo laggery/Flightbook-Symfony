@@ -20,7 +20,7 @@
             <form class="form" action="{{ path("fos_user_security_check") }}" method="post">
                 {% include 'UserBundle::login-form.html.twig' ignore missing %}
             </form>
-            <p class='register-link'>Register</p>
+            <p class='register-link'>{{ 'buttons.register'|trans({},'messages') }}</p>
         </div>
         <div class="text-center">
             {% if error %}
@@ -31,12 +31,17 @@
                     {{ flash_message }}
                 </div>
             {% endfor %}
+            {% for flash_message in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
             <div class="text-left">
                 <div class="app-links">
-                    <a href="https://play.google.com/store/apps/details?id=ch.flightbook.MobileFlight&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+                    <a target="_blank" href="https://play.google.com/store/apps/details?id=ch.flightbook.MobileFlight&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
                         <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" />
                     </a>
-                    <a href="https://itunes.apple.com/us/app/flightbook/id1046316231?l=fr&ls=1&mt=8">
+                    <a target="_blank" href="https://itunes.apple.com/ch/app/Flightbook/id1046316231?mt=8">
                         {% include 'UserBundle::ios.svg.twig' ignore missing %}
                     </a>
                 </div>
@@ -64,9 +69,10 @@
                         <input class="form-control" placeholder="{{ 'security.login.password'|trans }}" type="password" id="password" name="_password" required="required" />
                     </div>
 
-                    <input class="btn btn-default" type="submit" id="_submit" name="_submit" value="{{ 'registration.submit'|trans }}" />
+                    <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'registration.submit'|trans }}" />
                 </form>
-                <p class='cancel-link'>Cancel</p>
+                <button type="button" class="btn btn-default btn lose-pwd" data-toggle="modal" data-target="#myModal">{{ 'message.forgot'|trans({},'messages') }}</button>
+                <p class='cancel-link'>{{ 'buttons.cancel'|trans({},'messages') }}</p>
             </div>
             <div class="lang">
                 <a href="/de/" title="DE"><img src="{{ asset('images/lang/de.png') }}" alt="DE"></a>
@@ -74,20 +80,29 @@
                 <a href="/en/" title="EN"><img src="{{ asset('images/lang/en.png') }}" alt="EN"></a>
             </div>
         </div>
-        
-        <div class="reset">
-            <form class="form" action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-                <div>
-                    {% if invalid_username is defined %}
-                        <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
-                    {% endif %}
-                    <label for="reset_email">{{ 'user.email'|trans({},'messages') }}</label>
-                    <input type="text" id="username" name="reset_email" required="required" />
-                </div>
-                <div>
-                    <input class="btn btn-default" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
-                </div>
-            </form>
+            
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <form class="form" action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">{{ 'message.forgot'|trans({},'messages') }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ 'message.entermail'|trans({},'messages') }}</p>
+                            <div>
+                                <input class="form-control" placeholder="{{ 'user.email'|trans({},'messages') }}" type="text" name="reset_email" required="required" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'buttons.cancel'|trans({},'messages') }}</button>
+                            <input class="btn btn-primary" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock fos_user_content %}
