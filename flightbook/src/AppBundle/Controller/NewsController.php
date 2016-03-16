@@ -27,7 +27,7 @@ class NewsController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $locale = $request->getLocale();
-        $news = $em->getRepository('AppBundle:News')->findBy(array('language' => $locale));
+        $news = $em->getRepository('AppBundle:News')->findBy(array('language' => $locale), array('date' => 'DESC'));
 
         return $this->render('news/index.html.twig', array(
             'news' => $news,
