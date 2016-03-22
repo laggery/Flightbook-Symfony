@@ -50,7 +50,12 @@ class StatisticController extends Controller {
                 $nbYear = $barChartVal[$flight->getDate()->format('Y')][0] + 1;
                 $barChartVal[$flight->getDate()->format('Y')] = [$nbYear, $incomeYear];
 
-                $minutesYear = $lineChartVal[$flight->getDate()->format('Y')][0] + $this->getMinutes($flight->getTime()->format('H:i:s'));
+                if ($flight->getTime() != null) {
+                    $minutesYear = $lineChartVal[$flight->getDate()->format('Y')][0] + $this->getMinutes($flight->getTime()->format('H:i:s'));
+                } else {
+                    $minutesYear = $lineChartVal[$flight->getDate()->format('Y')][0];
+                }
+                
                 $lineChartVal[$flight->getDate()->format('Y')] = [$minutesYear, $nbYear];
             } else {
                 $barChartVal[$flight->getDate()->format('Y')] = [1, $flight->getPrice()];
