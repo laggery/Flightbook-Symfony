@@ -237,19 +237,39 @@
             </trans-unit>
             <trans-unit id="141">
                 <source>statistic.nbflight</source>
-                <target>Anzahl Flüge:</target>
+                <target>Anzahl Flüge</target>
             </trans-unit>
             <trans-unit id="142">
                 <source>statistic.flighthour</source>
-                <target>Flugstunden:</target>
+                <target>Flugstunden</target>
             </trans-unit>
             <trans-unit id="143">
                 <source>statistic.average</source>
-                <target>Durchschnittszeit:</target>
+                <target>Durchschnittszeit</target>
             </trans-unit>
             <trans-unit id="144">
                 <source>statistic.price</source>
-                <target>Einkommen:</target>
+                <target>Einkommen</target>
+            </trans-unit>
+                        <trans-unit id="145">
+                <source>statistic.averageMin</source>
+                <target>Durchschnittszeit min</target>
+            </trans-unit>
+            <trans-unit id="146">
+                <source>statistic.years</source>
+                <target>Jahre</target>
+            </trans-unit>
+            <trans-unit id="147">
+                <source>statistic.hours</source>
+                <target>Stunden</target>
+            </trans-unit>
+            <trans-unit id="148">
+                <source>statistic.minutes</source>
+                <target>Minuten</target>
+            </trans-unit>
+            <trans-unit id="149">
+                <source>statistic.francs</source>
+                <target>Franken</target>
             </trans-unit>
         </body>
     </file>
