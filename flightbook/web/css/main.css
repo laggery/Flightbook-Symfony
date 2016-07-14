@@ -12,6 +12,9 @@ body {
 table {
     text-align: left;
 }
+td { 
+    white-space:pre 
+}
 .edit-button, .delete-button, .save-button {
     width: 100%;
 }
@@ -61,6 +64,10 @@ form div input[type=text],  form div input[type=number]{
 .dateSelectfield, .timeSelectfield, form div input[type=checkbox] {
     text-align: left;
     display: block;
+}
+
+textarea.form-control {
+    width: 70%
 }
 
 /*flash message*/
@@ -230,6 +237,10 @@ fieldset {
     }
     #filter button[type=reset] {
         margin-left: 0em; 
+    }
+    
+    textarea.form-control {
+        width: 100%
     }
 
     /**** language ****/

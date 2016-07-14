@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -73,7 +74,8 @@ class FlightType extends AbstractType {
                     'label' => 'flight.price'))
                 ->add('km', null, array(
                     'label' => 'flight.km'))
-                ->add('description', null, array(
+                ->add('description', TextareaType::class, array(
+                    'required' => false,
                     'label' => 'flight.description'));
     }
 
