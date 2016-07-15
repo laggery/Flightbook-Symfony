@@ -157,6 +157,37 @@ class FlightController extends Controller {
 
         return $this->redirectToRoute('flight_index');
     }
+    
+    /**
+     * Exports all Flights.
+     *
+     * @Route("/export", name="flight_export")
+     * @Method({"GET", "POST"})
+     */
+    public function exportAction(Request $request) {
+        echo "dd"; die;
+        $form = $this->createForm(FlightFilterType::class);
+        
+        $em = $this->getDoctrine()->getManager();
+        $filterBuilder = $em->getRepository('AppBundle:Flight')->createQueryBuilder('f');
+        $filterBuilder->innerJoin('f.glider', 'g')->where("f.user =" . $this->getUser()->getId())->orderBy('f.date', 'desc');
+
+        if ($request->query->has($form->getName())) {
+            $form->submit($request->query->get($form->getName()));
+
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+        }
+        
+        $flights = $filterBuilder->getQuery()->execute();
+
+        $filename = "export_".date("Y_m_d_His").".csv";
+        $response = $this->render('flight/exportCSV.html.twig', array(
+                    'flights' => $flights
+        ));
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename='.$filename); 
+        return $response; 
+    }
 
     /**
      * Creates a form to delete a Flight entity.

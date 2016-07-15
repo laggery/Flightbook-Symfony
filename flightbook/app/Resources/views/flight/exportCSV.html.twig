@@ -1,0 +1,4 @@
+brand, glider name, start, landing 
+{% for flight in flights %}
+{{ flight.glider.brand }},{{ flight.date|date('d.m.Y') }},{{ flight.start.name }},{{ flight.landing.name }}
+{% endfor %}
