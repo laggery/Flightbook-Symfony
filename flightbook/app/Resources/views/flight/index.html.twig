@@ -13,8 +13,10 @@
         </form>
     </fieldset>       
             
-    <p><a class="btn btn-primary btn-lg" href="{{ path('flight_new') }}">{{ 'buttons.add'|trans }}</a></p>
-    <p><a class="btn btn-primary btn-lg" href="{{ path('flight_export') }}">ExportCSV</a></p>
+    <p>
+        <a class="btn btn-primary btn-lg" href="{{ path('flight_new') }}">{{ 'buttons.add'|trans }}</a>
+        <a id="exportBtn" class="btn btn-success btn-lg" href="{{ path('flight_export') }}{{ filter }}">ExportCSV</a>
+    </p>
     <div class="lead place">
         {% if flights|length > 0 %}
         <table class="table table-striped">
