@@ -189,6 +189,10 @@
                 <source>buttons.clear</source>
                 <target>Clear</target>
             </trans-unit>
+            <trans-unit id="74">
+                <source>buttons.csv</source>
+                <target>CSV Export</target>
+            </trans-unit>
             
             <!-- User traduction -->
             <trans-unit id="90">
