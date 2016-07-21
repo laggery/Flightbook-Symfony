@@ -25,12 +25,17 @@ class FlightController extends Controller {
      * @Method("GET")
      */
     public function indexAction(Request $request) {
+        $filter = substr($_SERVER['REQUEST_URI'], strpos($_SERVER['REQUEST_URI'], "?"));
+        $hasFilter = strspn($filter,"?");
+        if ($hasFilter==0){
+            $filter = null;
+        }
         $form = $this->createForm(FlightFilterType::class);
         
         $em = $this->getDoctrine()->getManager();
         $filterBuilder = $em->getRepository('AppBundle:Flight')->createQueryBuilder('f');
         $filterBuilder->innerJoin('f.glider', 'g')->where("f.user =" . $this->getUser()->getId())->orderBy('f.date', 'desc');
-
+        
         if ($request->query->has($form->getName())) {
             $form->submit($request->query->get($form->getName()));
 
@@ -44,7 +49,38 @@ class FlightController extends Controller {
         return $this->render('flight/index.html.twig', array(
                     'flights' => $flights,
                     'form' => $form->createView(),
+                    'filter' => $filter
         ));
+    }
+    
+    /**
+     * Export flights
+     * 
+     * @Route("/export", name="flight_export")
+     * @Method("GET")
+     */
+    public function exportAction(Request $request) {
+        $form = $this->createForm(FlightFilterType::class);
+        
+        $em = $this->getDoctrine()->getManager();
+        $filterBuilder = $em->getRepository('AppBundle:Flight')->createQueryBuilder('f');
+        $filterBuilder->innerJoin('f.glider', 'g')->where("f.user =" . $this->getUser()->getId())->orderBy('f.date', 'desc');
+
+        if ($request->query->has($form->getName())) {
+            $form->submit($request->query->get($form->getName()));
+
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+        }
+        
+        $flights = $filterBuilder->getQuery()->execute();
+
+        $filename = "export_".date("Y_m_d_His").".csv";
+        $response = $this->render('flight/exportCSV.html.twig', array(
+                    'flights' => $flights
+        ));
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename='.$filename); 
+        return $response; 
     }
 
     /**

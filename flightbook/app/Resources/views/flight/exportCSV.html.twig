@@ -1,0 +1,5 @@
+{{ 'flight.date'|trans }},{{ 'flight.start'|trans }},{{ 'flight.landing'|trans }},{{ 'flight.time'|trans }},{{ 'flight.km'|trans }},{{ 'flight.price'|trans }},{{ 'flight.description'|trans }},{{ 'glider.brand'|trans }},{{ 'glider.name'|trans }},{{ 'glider.tandem'|trans }}
+{% for flight in flights %}
+{{ flight.date|date('d.m.Y') }},{{ flight.start.name }},{{ flight.landing.name }},{{ flight.time|date('H:i') }},{{ flight.km }},{{ flight.price }},{{ flight.description }},{{ flight.glider.brand }},{{ flight.glider.name }},{% if flight.glider.tandem %}{{ 'buttons.yes'|trans }}{% else %}{{ 'buttons.no'|trans }}{% endif %}
+
+{% endfor %}

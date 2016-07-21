@@ -18,6 +18,9 @@ td {
 .edit-button, .delete-button, .save-button {
     width: 100%;
 }
+#exportBtn {
+    margin-left: 30px;
+}
 .lang {
     width: 24px;
 }
