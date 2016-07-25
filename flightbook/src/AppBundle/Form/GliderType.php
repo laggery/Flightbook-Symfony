@@ -14,12 +14,18 @@ class GliderType extends AbstractType {
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
+        $dateRange = array();
+        foreach(range(date('Y'), 1980) as $k => $v) {
+            $dateRange[$v] = $v;
+        }
+        
         $builder->add('buyDate', DateType::class, array(
                     'input' => 'datetime',
                     'required' => false,
                     'widget' => 'choice',
                     'format' => 'dd.MM.yyyy',
                     'label' => 'glider.buydate',
+                    'years' => $dateRange,
                     'attr' => array('class' => 'dateSelectfield')))
                 ->add('brand', null, array(
                     'label' => 'glider.brand'))

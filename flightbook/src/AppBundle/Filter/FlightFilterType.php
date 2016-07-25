@@ -14,8 +14,19 @@ use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
 class FlightFilterType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
+        $dateRange = array();
+        foreach(range(date('Y'), 1980) as $k => $v) {
+            $dateRange[$v] = $v;
+        }
+        
         $builder->add('date', DateRangeFilterType::class, array(
-                    'label' => 'flight.from'
+                    'label' => 'flight.from',
+                    'left_date_options' => array(
+                        'years' => $dateRange,
+                        ),
+                    'right_date_options' => array(
+                        'years' => $dateRange,
+                        )
                 ))
                 ->add('brand', TextFilterType::class, array(
                     'label' => 'glider.brand',

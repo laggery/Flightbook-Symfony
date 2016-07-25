@@ -24,6 +24,12 @@ class FlightType extends AbstractType {
             return $er->createQueryBuilder('p')
                             ->where('p.user =' . $user->getId());
         };
+        
+        $dateRange = array();
+        foreach(range(date('Y'), 1980) as $k => $v) {
+            $dateRange[$v] = $v;
+        }
+        
         $builder->add('glider', EntityType::class, array(
                     'class' => 'AppBundle:Glider',
                     'attr' => array('class' => 'selectfield'),
@@ -41,6 +47,7 @@ class FlightType extends AbstractType {
                     'widget' => 'choice',
                     'format' => 'dd.MM.yyyy',
                     'label' => 'flight.date',
+                    'years' => $dateRange,
                     'attr' => array('class' => 'dateSelectfield')))
                 ->add('time', TimeType::class, array(
                     'input' => 'datetime',
