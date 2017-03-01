@@ -34,7 +34,7 @@ class FlightController extends Controller {
         
         $em = $this->getDoctrine()->getManager();
         $filterBuilder = $em->getRepository('AppBundle:Flight')->createQueryBuilder('f');
-        $filterBuilder->innerJoin('f.glider', 'g')->where("f.user =" . $this->getUser()->getId())->orderBy('f.date', 'desc')->orderBy('f.timestamp', 'desc');
+        $filterBuilder->innerJoin('f.glider', 'g')->where("f.user =" . $this->getUser()->getId())->add('orderBy','f.date DESC, f.timestamp DESC');
         
         if ($request->query->has($form->getName())) {
             $form->submit($request->query->get($form->getName()));
