@@ -99,6 +99,13 @@ class Flight {
      * })
      */
     private $user;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp", type="datetime", nullable=true)
+     */
+    private $timestamp;
 
     /**
      * 
@@ -356,6 +363,28 @@ class Flight {
      */
     public function getGlider() {
         return $this->glider;
+    }
+    
+    /**
+     * Set time
+     *
+     * @param \DateTime $time
+     *
+     * @return Flight
+     */
+    public function setTimestamp($timestamp) {
+        $this->$timestamp = $timestamp;
+
+        return $this;
+    }
+
+    /**
+     * Get time
+     *
+     * @return \DateTime
+     */
+    public function getTimestamp() {
+        return $this->timestamp;
     }
 
 }
