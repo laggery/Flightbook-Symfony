@@ -118,6 +118,8 @@ class PlaceController extends Controller {
                 $em->flush();
                 return $this->redirectToRoute('place_show', array('id' => $place->getId()));
             } elseif ($place->getId() == $placeExist[0]->getId()) {
+                $em->persist($place);
+                $em->flush();
                 return $this->redirectToRoute('place_show', array('id' => $place->getId()));
             } else {
                 $this->addFlash('error', $this->get('translator')->trans('message.placeExist'));

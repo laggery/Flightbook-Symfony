@@ -14,7 +14,9 @@ class PlaceType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('name', null, array(
-            'label' => 'place.name'));
+                    'label' => 'place.name'))
+                ->add('altitude', null, array(
+                    'label' => 'place.altitude'));
     }
 
     /**

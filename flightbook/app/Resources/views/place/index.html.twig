@@ -12,6 +12,7 @@
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
                     <th>{{ 'place.name'|trans }}</th>
+                    <th>{{ 'place.altitude'|trans }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,11 @@
                         <td><a class="img glyphicon glyphicon-zoom-in" href="{{ path('place_show', { 'id': place.id }) }}"></a></td>
                         <td><a class="img glyphicon glyphicon-edit" href="{{ path('place_edit', { 'id': place.id }) }}"></a></td>
                         <td>{{ place.name }}</td>
+                        {% if place.altitude %}
+                        <td>{{ place.altitude }}</td>
+                        {% else %}
+                        <td>-</td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>

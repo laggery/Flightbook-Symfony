@@ -110,7 +110,7 @@
                 <target>Tandem</target>
             </trans-unit>
             
-            <!-- Glider traduction -->
+            <!-- Place traduction -->
             <trans-unit id="40">
                 <source>places</source>
                 <target>Places</target>
@@ -130,6 +130,10 @@
             <trans-unit id="44">
                 <source>place.edit</source>
                 <target>Edit place</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>place.altitude</source>
+                <target>Altitude</target>
             </trans-unit>
             
             <!-- Button traduction -->

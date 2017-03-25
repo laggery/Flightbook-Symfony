@@ -12,6 +12,14 @@
                     <th>{{ 'place.name'|trans }}</th>
                     <td>{{ place.name }}</td>
                 </tr>
+                <tr>
+                    <th>{{ 'place.altitude'|trans }}</th>
+                    {% if place.altitude %}
+                    <td>{{ place.altitude }}</td>
+                    {% else %}
+                    <td>-</td>
+                    {% endif %}
+                </tr>
             </tbody>
         </table>
     </div>

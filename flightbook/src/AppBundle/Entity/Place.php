@@ -27,6 +27,13 @@ class Place {
      * @ORM\Column(name="name", type="string", length=40, nullable=false)
      */
     private $name;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="altitude", type="integer", nullable=true)
+     */
+    private $altitude;
 
     /**
      * @var \User
@@ -99,4 +106,28 @@ class Place {
         return $this->name;
     }
 
+
+    /**
+     * Set altitude
+     *
+     * @param integer $altitude
+     *
+     * @return Place
+     */
+    public function setAltitude($altitude)
+    {
+        $this->altitude = $altitude;
+
+        return $this;
+    }
+
+    /**
+     * Get altitude
+     *
+     * @return integer
+     */
+    public function getAltitude()
+    {
+        return $this->altitude;
+    }
 }

@@ -27,13 +27,20 @@ class Place {
      * @ORM\Column(name="name", type="string", length=40, nullable=false)
      */
     private $name;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="altitude", type="integer", nullable=true)
+     */
+    private $altitude;
 
     /**
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $user;
