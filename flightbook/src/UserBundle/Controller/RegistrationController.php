@@ -39,6 +39,14 @@ class RegistrationController extends Controller
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->get('event_dispatcher');
 
+        if (!$this->captchaverify($request->get('g-recaptcha-response'))){
+            $this->addFlash(
+                'error',
+                'Captcha Require'
+              );
+            return $this->redirectToRoute('news_index');
+        }
+
         $user = $userManager->createUser();
         $user->setEnabled(true);
         
@@ -172,5 +180,23 @@ class RegistrationController extends Controller
         if ($this->get('session')->has($key)) {
             return $this->get('session')->get($key);
         }
+    }
+    
+    # get success response from recaptcha and return it to controller
+    function captchaverify($recaptcha){
+            $url = "https://www.google.com/recaptcha/api/siteverify";
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+                "secret"=>"6LfhLx8UAAAAAF60-As1u6agwPr5MlNgkHj3Fxue","response"=>$recaptcha));
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $response = curl_exec($ch);
+            curl_close($ch);
+            $data = json_decode($response);    
+        
+        return $data->success;        
     }
 }

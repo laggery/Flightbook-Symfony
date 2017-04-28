@@ -38,6 +38,9 @@
     float: left;
     text-align: center;
 }
+.text-right .g-recaptcha {
+    margin-bottom: 0.9em;
+}
 
 .lang {
     padding-top: 24.5em;
