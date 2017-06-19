@@ -82,6 +82,36 @@ class FlightController extends Controller {
         $response->headers->set('Content-Disposition', 'attachment; filename='.$filename); 
         return $response; 
     }
+    
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/exportXLS.xlsx", name="flight_exportXLS", defaults={"templateName" = "exportXLS", "_format" = "xlsx"})
+     */
+    public function exportXLSAction(Request $request) {
+        $filter = substr($_SERVER['REQUEST_URI'], strpos($_SERVER['REQUEST_URI'], "?"));
+        $hasFilter = strspn($filter,"?");
+        if ($hasFilter==0){
+            $filter = null;
+        }
+        $form = $this->createForm(FlightFilterType::class);
+        
+        $em = $this->getDoctrine()->getManager();
+        $filterBuilder = $em->getRepository('AppBundle:Flight')->createQueryBuilder('f');
+        $filterBuilder->innerJoin('f.glider', 'g')->where("f.user =" . $this->getUser()->getId())->orderBy('f.date', 'desc');
+
+        if ($request->query->has($form->getName())) {
+            $form->submit($request->query->get($form->getName()));
+
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+        }
+        
+        $flights = $filterBuilder->getQuery()->execute();
+        
+        return $this->render('flight/exportXLS.xlsx.twig', array(
+                    'flights' => $flights
+        ));
+    }
 
     /**
      * Creates a new Flight entity.

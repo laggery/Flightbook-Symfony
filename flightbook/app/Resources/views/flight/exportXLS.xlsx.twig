@@ -1,0 +1,158 @@
+{% xlsdocument %}
+    {% xlssheet 'Flights' {
+	columnDimension: {
+        'default': {
+            autoSize: true
+        }
+    }} %}
+		{% xlsrow %}
+			{% xlscell {
+                'style': {
+                    'font': {
+                        'bold': true
+                    }
+                }
+            } %}{{ 'flight.date'|trans }}{% endxlscell %}
+			{% xlscell {
+                'style': {
+                    'font': {
+                        'bold': true
+                    }
+                }
+            } %}{{ 'flight.start'|trans }}{% endxlscell %}
+			{% xlscell {
+                'style': {
+                    'font': {
+                        'bold': true
+                    }
+                }
+            } %}{{ 'flight.landing'|trans }}{% endxlscell %}
+			{% xlscell {
+                'style': {
+                    'font': {
+                        'bold': true
+                    }
+                }
+            } %}{{ 'flight.time'|trans }}{% endxlscell %}
+			{% xlscell {
+                'style': {
+                    'font': {
+                        'bold': true
+                    }
+                }
+            } %}{{ 'flight.km'|trans }}{% endxlscell %}
+			{% xlscell {
+                'style': {
+                    'font': {
+                        'bold': true
+                    }
+                }
+            } %}{{ 'flight.price'|trans }}{% endxlscell %}
+			{% xlscell {
+                'style': {
+                    'font': {
+                        'bold': true
+                    }
+                }
+            } %}{{ 'flight.description'|trans }}{% endxlscell %}
+			{% xlscell {
+                'style': {
+                    'font': {
+                        'bold': true
+                    }
+                }
+            } %}{{ 'glider.brand'|trans }}{% endxlscell %}
+			{% xlscell {
+                'style': {
+                    'font': {
+                        'bold': true
+                    }
+                }
+            } %}{{ 'glider.name'|trans }}{% endxlscell %}
+			{% xlscell {
+                'style': {
+                    'font': {
+                        'bold': true
+                    }
+                }
+            } %}{{ 'glider.tandem'|trans }}{% endxlscell %}
+		{% endxlsrow %}
+			
+        {% for flight in flights %}
+            {% xlsrow %}
+                {% xlscell {
+					'style': {
+						'alignment': {
+							'vertical': "top"
+						}
+					}
+				} %}{{ flight.date|date('d.m.Y') }}{% endxlscell %}
+				{% xlscell {
+					'style': {
+						'alignment': {
+							'vertical': "top"
+						}
+					}
+				} %}{% if flight.start %}{{ flight.start.name }}{% endif %}{% endxlscell %}
+				{% xlscell {
+					'style': {
+						'alignment': {
+							'vertical': "top"
+						}
+					}
+				} %}{% if flight.landing %}{{ flight.landing.name }}{% endif %}{% endxlscell %}
+				{% xlscell {
+					'style': {
+						'alignment': {
+							'vertical': "top"
+						}
+					}
+				} %}{% if flight.time %}{{ flight.time|date('H:i') }}{% endif %}{% endxlscell %}
+				{% xlscell {
+					'style': {
+						'alignment': {
+							'vertical': "top"
+						}
+					}
+				} %}{{ flight.km }}{% endxlscell %}
+				
+				{% xlscell {
+					'style': {
+						'alignment': {
+							'vertical': "top"
+						}
+					}
+				} %}{{ flight.price }}{% endxlscell %}
+				{% xlscell {
+					'style': {
+						'alignment': {
+							'vertical': "top",
+                                                        'wrap': true
+						}
+					}
+				} %}{{ flight.description }}{% endxlscell %}
+				{% xlscell {
+					'style': {
+						'alignment': {
+							'vertical': "top"
+						}
+					}
+				} %}{{ flight.glider.brand }}{% endxlscell %}
+				{% xlscell {
+					'style': {
+						'alignment': {
+							'vertical': "top"
+						}
+					}
+				} %}{{ flight.glider.name }}{% endxlscell %}
+				{% xlscell {
+					'style': {
+						'alignment': {
+							'vertical': "top"
+						}
+					}
+				} %}{% if flight.glider.tandem %}{{ 'buttons.yes'|trans }}{% else %}{{ 'buttons.no'|trans }}{% endif %}{% endxlscell %}
+            {% endxlsrow %}
+        {% endfor %}
+    {% endxlssheet %}
+{% endxlsdocument %}
