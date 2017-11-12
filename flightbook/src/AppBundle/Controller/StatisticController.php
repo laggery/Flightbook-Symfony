@@ -42,6 +42,8 @@ class StatisticController extends Controller {
         $income = 0;
         $total = '00:00:00';
         $times = array();
+        $lineChartVal = null;
+        $barChartVal = null;
         foreach ($flights as $flight) {
             $nbFlight++;
             $income = $income + $flight->getPrice();
@@ -59,7 +61,12 @@ class StatisticController extends Controller {
                 $lineChartVal[$flight->getDate()->format('Y')] = [$minutesYear, $nbYear];
             } else {
                 $barChartVal[$flight->getDate()->format('Y')] = [1, $flight->getPrice()];
-                $lineChartVal[$flight->getDate()->format('Y')] = [$this->getMinutes($flight->getTime()->format('H:i:s')), 1];
+                if ($flight->getTime() != null) {
+                    $lineChartVal[$flight->getDate()->format('Y')] = [$this->getMinutes($flight->getTime()->format('H:i:s')), 1];
+                } else {
+                    $lineChartVal[$flight->getDate()->format('Y')] = [$this->getMinutes('00:00:00'), 1];
+                }
+                
             }
             if ($flight->getTime()) {
                 array_push($times, $flight->getTime()->format('H:i:s'));
@@ -77,7 +84,7 @@ class StatisticController extends Controller {
         }
 
         $lineChart = $this->lineChart($lineChartVal);
-        $barChart = $this->barChart($barChartVal);
+        $barChart = $this->barChart($barChartVal); 
 
         return $this->render('statistic/index.html.twig', array(
                     'nbFlight' => $nbFlight,
@@ -118,10 +125,14 @@ class StatisticController extends Controller {
     private function lineChart($table) {
         $data[] = ['Year', $this->get('translator')->trans('statistic.flighthour', array(), 'messages'), $this->get('translator')->trans('statistic.averageMin', array(), 'messages')];
 
-        foreach ($table as $key => $value) {
-            $hour = $value[0] / 60;
-            $average = ($value[0] / $value[1]);
-            $data[] = ['' . $key . '', round($hour), round($average)];
+        if (is_null($table)){
+            $data[] = [date("Y"), 0, 0];
+        } else {
+            foreach ($table as $key => $value) {
+                $hour = $value[0] / 60;
+                $average = ($value[0] / $value[1]);
+                $data[] = ['' . $key . '', round($hour), round($average)];
+            }
         }
 
         $chart = new ComboChart();
@@ -159,8 +170,12 @@ class StatisticController extends Controller {
     private function barChart($table) {
         $data[] = [$this->get('translator')->trans('statistic.years', array(), 'messages'), $this->get('translator')->trans('statistic.nbflight', array(), 'messages'), $this->get('translator')->trans('statistic.price', array(), 'messages')];
 
-        foreach ($table as $key => $value) {
-            $data[] = ['' . $key . '', $value[0], $value[1]];
+        if (is_null($table)){
+            $data[] = [date("Y"), array(0), array(0)];
+        } else {
+            foreach ($table as $key => $value) {
+                $data[] = ['' . $key . '', $value[0], $value[1]];
+            }
         }
 
         $chart = new ComboChart();

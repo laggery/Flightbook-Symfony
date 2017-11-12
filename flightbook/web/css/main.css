@@ -28,6 +28,11 @@ td {
     margin-left: 10px;
 }
 
+/* @hack */
+#google-visualization-errors-all-1 {
+    display: none !important;
+}
+
 /* news style */
 p.title {
     border-top: solid lightgrey 1px;
