@@ -14,16 +14,18 @@ class PlaceRepository extends EntityRepository {
     
     public function findByName($userId, $name) {
         return $this->createQueryBuilder('p')
-                ->where("p.name ='" . $name . "'")
+                ->where("p.name = :name")
                 ->andWhere("p.user =" .$userId)
+                ->setParameter('name', $name)
                 ->getQuery()
                 ->execute();
     }
     
     public function findSingleResultByName($userId, $name) {
         return $this->createQueryBuilder('p')
-                ->where("p.name ='" . $name . "'")
+                ->where("p.name = :name")
                 ->andWhere("p.user =" .$userId)
+                ->setParameter('name', $name)
                 ->getQuery()
                 ->setMaxResults(1)
                 ->getOneOrNullResult();
