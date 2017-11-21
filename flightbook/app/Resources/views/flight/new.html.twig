@@ -6,6 +6,20 @@
     
     <a class="save-button btn btn-primary btn-lg" href="{{ path('flight_index') }}">{{ 'buttons.backlist'|trans }}</a>
 
+    <input type="radio" value="manuel" name="dataOption" checked>
+    <label>Manuel</label> 
+    <input type="radio" value="xc-link" name="dataOption" />
+    <label>XC-Link</label> 
+    
+    <div id="xcFields">
+        <form>
+        <div class="form-group">
+            <label class="control-label" for="xc-link">XC-Link</label>
+            <input type="text" id="xc-link" name="xc-link" class="form-control"></div>
+        <a id="getData" class="save-button btn btn-primary btn-lg">Get Data</a>
+        </form>
+    </div>
+    
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input class="save-button btn btn-success btn-lg" type="submit" value="{{ 'buttons.save'|trans }}" />

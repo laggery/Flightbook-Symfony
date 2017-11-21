@@ -28,5 +28,34 @@ $(document).ready(function () {
         }
         $(this).siblings().stop().slideToggle('slow', function () {});
     });
-
+    
+    //Permet d'afficher ou non le lien XC
+    $('input[name=dataOption]').on('change', function() {
+        var val = $('input[name=dataOption]:checked').val(); 
+        if (val === 'xc-link'){
+            $('#xcFields').show();
+        } else {
+            $('#xcFields').hide();
+        }
+     });
+     
+     $('#xcFields #getData').on('click', function() {
+        var link = $('#xc-link').val();
+        if (!link){
+            alert("Please enter a link");
+            return;
+        }
+        
+        var res = link.split('detail:');
+        console.log(res[1]);
+        
+        $.ajax({
+            url: "https://www.xcontest.org/api/data/?flights/world/2018:"+res[1]+"&lng=en&key=03ECF5952EB046AC-A53195E89B7996E4-D1B128E82C3E2A66",
+            jsonp: "callback",
+            dataType: "jsonp",
+            success: function( response ) {
+                console.log(response); // server response
+            }
+        });
+     });
 });

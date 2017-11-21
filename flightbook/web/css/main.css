@@ -108,6 +108,9 @@ textarea.form-control {
 #moreFlights {
     text-align: left
 }
+#xcFields {
+    //display: none;
+}
 
 /******* Filter ********************/
 fieldset {
