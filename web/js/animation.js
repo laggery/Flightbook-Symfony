@@ -5,8 +5,7 @@ $(document).ready(function () {
     $('#glider_tandem').appendTo(".form-group:last");
     $('#glider .checkbox').hide();
 
-    $('.form-group:nth-child(1) label').insertBefore("#flight_filter_date_left_date");
-    $('.filter-date-range label').clone().insertBefore("#flight_filter_date_right_date").text($('#toAck').text());
+    $('.filter-date-range label:nth(1)').clone().insertBefore("#flight_filter_date_right_date").text($('#toAck').text());
 
     // autocomplete start and landing
     $("#flight_startText, #flight_landingText").autocomplete({

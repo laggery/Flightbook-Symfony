@@ -279,6 +279,28 @@
                 <source>statistic.francs</source>
                 <target>Franken</target>
             </trans-unit>
+			
+			<!-- various traductions -->
+			<trans-unit id="200">
+                <source>Year</source>
+                <target></target>
+            </trans-unit>
+			<trans-unit id="201">
+                <source>Month</source>
+                <target></target>
+            </trans-unit>
+			<trans-unit id="202">
+                <source>Day</source>
+                <target></target>
+            </trans-unit>
+			<trans-unit id="203">
+                <source>Solo</source>
+                <target>Solo</target>
+            </trans-unit>
+			<trans-unit id="204">
+                <source>Tandem</source>
+                <target>Tandem</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
