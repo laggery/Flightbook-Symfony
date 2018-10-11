@@ -20,13 +20,13 @@ class GliderType extends AbstractType {
         }
         
         $builder->add('buyDate', DateType::class, array(
-                    'input' => 'datetime',
-                    'required' => false,
-                    'widget' => 'choice',
                     'format' => 'dd.MM.yyyy',
-                    'label' => 'glider.buydate',
-                    'years' => $dateRange,
-                    'attr' => array('class' => 'dateSelectfield')))
+					'widget' => 'single_text',
+					'html5' => false,
+					'attr' => [
+							'class' => 'js-datepicker',
+							'autocomplete' => 'off'
+						]))
                 ->add('brand', null, array(
                     'label' => 'glider.brand'))
                 ->add('name', null, array(

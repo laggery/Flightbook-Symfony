@@ -43,12 +43,13 @@ class FlightType extends AbstractType {
                     'empty_data' => null
                 ))
                 ->add('date', DateType::class, array(
-                    'input' => 'datetime',
-                    'widget' => 'choice',
                     'format' => 'dd.MM.yyyy',
-                    'label' => 'flight.date',
-                    'years' => $dateRange,
-                    'attr' => array('class' => 'dateSelectfield')))
+					'widget' => 'single_text',
+					'html5' => false,
+					'attr' => [
+							'class' => 'js-datepicker',
+							'autocomplete' => 'off'
+						]))
                 ->add('time', TimeType::class, array(
                     'input' => 'datetime',
                     'widget' => 'choice',

@@ -5,7 +5,8 @@ $(document).ready(function () {
     $('#glider_tandem').appendTo(".form-group:last");
     $('#glider .checkbox').hide();
 
-    $('.filter-date-range label:nth(1)').clone().insertBefore("#flight_filter_date_right_date").text($('#toAck').text());
+	var $label = $("<label>").text($('#toAck').text());
+	$('#flight_filter_date_left_date').after($label);
 
     // autocomplete start and landing
     $("#flight_startText, #flight_landingText").autocomplete({
@@ -27,5 +28,11 @@ $(document).ready(function () {
         }
         $(this).siblings().stop().slideToggle('slow', function () {});
     });
+	
+	$.fn.datepicker.defaults.autoclose = true;
+	$('.js-datepicker').datepicker({
+		format: 'dd.mm.yyyy'
+	}).val();
+ 
 
 });

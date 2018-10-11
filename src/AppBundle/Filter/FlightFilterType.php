@@ -22,11 +22,23 @@ class FlightFilterType extends AbstractType {
         $builder->add('date', DateRangeFilterType::class, array(
                     'label' => 'flight.from',
                     'left_date_options' => array(
-                        'years' => $dateRange,
-                        ),
+                        'format' => 'dd.MM.yyyy',
+						'widget' => 'single_text',
+						'html5' => false,
+						'attr' => [
+							'class' => 'js-datepicker',
+							'autocomplete' => 'off'
+						]
+                    ),
                     'right_date_options' => array(
-                        'years' => $dateRange,
-                        )
+                        'format' => 'dd.MM.yyyy',
+						'widget' => 'single_text',
+						'html5' => false,
+						'attr' => [
+							'class' => 'js-datepicker',
+							'autocomplete' => 'off'
+						]
+                    )
                 ))
                 ->add('brand', TextFilterType::class, array(
                     'label' => 'glider.brand',
