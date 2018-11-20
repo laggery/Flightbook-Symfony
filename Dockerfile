@@ -32,3 +32,6 @@ RUN php bin/console cache:clear --env=dev --no-debug
 RUN php bin/console cache:clear --env=prod --no-debug
 
 COPY virtual-host.conf /etc/apache2/sites-available/000-default.conf
+
+RUN rm app/config/parameters.yml
+RUN mv app/config/docker-parameters.yml app/config/parameters.yml 
