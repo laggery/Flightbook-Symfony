@@ -18,7 +18,6 @@
     "require": {
         "php": ">=5.5.9",
         "symfony/symfony": "3.4.*",
-        "symfony/web-server-bundle": "3.3.*",
         "doctrine/orm": "^2.5",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
@@ -31,7 +30,7 @@
         "lexik/form-filter-bundle": "5.0.7",
         "jms/i18n-routing-bundle": "2.0",
         "cmen/google-charts-bundle": "1.1.*",
-        "mewesk/twig-excel-bundle": "2.2"
+        "mewesk/twig-spreadsheet-bundle": "1.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
