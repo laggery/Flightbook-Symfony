@@ -28,8 +28,6 @@ RUN php /home/composer/composer install
 RUN rm -R /home/composer
 
 RUN chmod -R 0775 var
-RUN php bin/console cache:clear --env=dev --no-debug
-RUN php bin/console cache:clear --env=prod --no-debug
 
 COPY virtual-host.conf /etc/apache2/sites-available/000-default.conf
 
