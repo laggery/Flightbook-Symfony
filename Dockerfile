@@ -27,9 +27,11 @@ RUN php /home/composer/composer install
 
 RUN rm -R /home/composer
 
-RUN chmod -R 0775 var
-
-COPY virtual-host.conf /etc/apache2/sites-available/000-default.conf
-
 RUN rm app/config/parameters.yml
-RUN mv app/config/docker-parameters.yml app/config/parameters.yml 
+RUN mv app/config/docker-parameters.yml app/config/parameters.yml
+
+RUN chmod -R 0775 var
+RUN php bin/console cache:clear --env=dev --no-debug
+RUN php bin/console cache:clear --env=prod --no-debug
+
+COPY virtual-host.conf /etc/apache2/sites-available/000-default.conf 
