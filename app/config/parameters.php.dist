@@ -1,0 +1,16 @@
+<?php
+// app/config/parameters.php
+
+$container->setParameter('database_name', $_ENV['DATABASE_NAME']);
+$container->setParameter('database_host', $_ENV['DATABASE_HOST']);
+$container->setParameter('database_port', $_ENV['DATABASE_PORT']);
+$container->setParameter('database_user', $_ENV['DATABASE_USER']);
+$container->setParameter('database_password', $_ENV['DATABASE_PASSWORD']);
+$container->setParameter('mailer_transport', $_ENV['MAILER_TRANSPORT']); 
+$container->setParameter('mailer_host', $_ENV['MAILER_HOST']); 
+$container->setParameter('mailer_user', $_ENV['MAILER_USER']); 
+$container->setParameter('mailer_password', $_ENV['MAILER_PASSWORD']); 
+$container->setParameter('mailer_encryption', $_ENV['MAILER_ENCRYPTION']); 
+$container->setParameter('mailer_port', $_ENV['MAILER_PORT']); 
+$container->setParameter('mailer_authmode', $_ENV['MAILER_AUTHMODE']); 
+$container->setParameter('secret', 'f5af21956696c114efb15f35b6cebf169a938a04');

@@ -23,15 +23,15 @@ COPY . /var/www/html/
 RUN mkdir /home/composer
 RUN php -r "copy('https://getcomposer.org/installer', '/home/composer/composer-setup.php');"
 RUN php /home/composer/composer-setup.php --install-dir=/home/composer/ --filename=composer
-RUN php /home/composer/composer install
+RUN php /home/composer/composer install --no-scripts
 
-RUN rm -R /home/composer
-
-RUN rm app/config/parameters.yml
-RUN mv app/config/docker-parameters.yml app/config/parameters.yml
+#RUN rm -R /home/composer
 
 RUN chmod -R 0775 var
-RUN php bin/console cache:clear --env=dev --no-debug
-RUN php bin/console cache:clear --env=prod --no-debug
+#RUN php bin/console cache:clear --env=dev --no-debug
+#RUN php bin/console cache:clear --env=prod --no-debug
+
+#RUN rm app/config/parameters.yml
+RUN mv app/config/parameters.php.dist app/config/parameters.php
 
 COPY virtual-host.conf /etc/apache2/sites-available/000-default.conf 
