@@ -31,7 +31,10 @@ RUN chmod -R 0775 var
 #RUN php bin/console cache:clear --env=dev --no-debug
 #RUN php bin/console cache:clear --env=prod --no-debug
 
-#RUN rm app/config/parameters.yml
+RUN mv app/config/parameters.yml.dist app/config/parameters.yml
 RUN mv app/config/parameters.php.dist app/config/parameters.php
 
-COPY virtual-host.conf /etc/apache2/sites-available/000-default.conf 
+COPY virtual-host.conf /etc/apache2/sites-available/000-default.conf
+
+RUN chmod 755 /var/www/html/docker-entrypoint.sh
+ENTRYPOINT ["/var/www/html/docker-entrypoint.sh"]
