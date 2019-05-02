@@ -25,16 +25,17 @@ RUN php -r "copy('https://getcomposer.org/installer', '/home/composer/composer-s
 RUN php /home/composer/composer-setup.php --install-dir=/home/composer/ --filename=composer
 RUN php /home/composer/composer install --no-scripts
 
-#RUN rm -R /home/composer
-
-RUN chmod -R 0775 var
-#RUN php bin/console cache:clear --env=dev --no-debug
-#RUN php bin/console cache:clear --env=prod --no-debug
-
-RUN mv app/config/parameters.yml.dist app/config/parameters.yml
-RUN mv app/config/parameters.php.dist app/config/parameters.php
-
 COPY virtual-host.conf /etc/apache2/sites-available/000-default.conf
 
-RUN chmod 755 /var/www/html/docker-entrypoint.sh
-ENTRYPOINT ["/var/www/html/docker-entrypoint.sh"]
+## Copy the EntryPoint file
+COPY ./entryPoint.sh /
+
+# Correct file format to linux standard
+RUN sed -i -e 's/\r$//' /entryPoint.sh
+
+## Edit file rights to run correctly at startup 
+RUN chmod +x entryPoint.sh
+
+ENTRYPOINT ["/entryPoint.sh"]
+
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

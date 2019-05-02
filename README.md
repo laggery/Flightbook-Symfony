@@ -25,15 +25,12 @@ $ git clone git@github.com:laggery/Flightbook-Symfony.git
 
 Install a mysql database and load the structure you find in the folder “db”
 
-Modify the configuration variable in the file “docker-parameters.yml”
-
-Run the following Docker command:
+Complete the environment variable in the following Docker command and run it:
 ```bash
-$ docker build -t flightbook-symfony .
-$ docker run -p 8080:80 flightbook-symfony
+$ docker run  -e DATABASE_USER= -e DATABASE_NAME= -e DATABASE_HOST= -e DATABASE_PORT= -e DATABASE_PASSWORD= -e MAILER_ENCRYPTION= -e MAILER_PORT= -e MAILER_AUTHMODE=login -e SECRET= -p 8080:80 laggery/flightbook-symfony:latest
 ```
 
-Your rest API is now available with the following link:
+Your application is now available with the following link:
 [http://\<your-docker-ip>:8080/](http://<your-docker-ip>:8080/)
 
 ## Security

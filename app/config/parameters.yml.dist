@@ -2,17 +2,16 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-    database_host: 127.0.0.1
-    database_port: null
-    database_name: flight
-    database_user: 
-    database_password: 
-    mailer_transport: smtp
-    mailer_host: smtp.zoho.com
-    mailer_user: 
-    mailer_password: 
-    mailer_password: 
-    mailer_encryption: ssl
-    mailer_port: 465
-    mailer_authmode: login
-    secret: f5af21956696c114efb15f35b6cebf169a938a04
+    env(DATABASE_HOST): 127.0.0.1
+    env(DATABASE_PORT): 
+    env(DATABASE_NAME): flight
+    env(DATABASE_USER): 
+    env(DATABASE_PASSWORD): 
+    env(MAILER_TRANSPORT): smtp
+    env(MAILER_HOST): smtp.zoho.com
+    env(MAILER_USER): 
+    env(MAILER_PASSWORD): 
+    env(MAILER_ENCRYPTION): ssl
+    env(MAILER_PORT): 465
+    env(MAILER_AUTHMODE): login
+    env(SECRET): secret
