@@ -1,0 +1,13 @@
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker build -t $DOCKER_USERNAME/flightbook-symfony .
+      - docker images
+      - docker tag  $DOCKER_USERNAME/flightbook-symfony:latest $DOCKER_USERNAME/flightbook-symfony:"$TRAVIS_BUILD_NUMBER"
+      - docker push $DOCKER_USERNAME/flightbook-symfony:"$TRAVIS_BUILD_NUMBER"
+      - docker push $DOCKER_USERNAME/flightbook-symfony:latest
+branches:
+  only:
+  - master
