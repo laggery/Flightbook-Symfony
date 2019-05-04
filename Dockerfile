@@ -36,6 +36,6 @@ RUN sed -i -e 's/\r$//' /entryPoint.sh
 ## Edit file rights to run correctly at startup 
 RUN chmod +x entryPoint.sh
 
-ENTRYPOINT ["/entryPoint.sh"]
+ENTRYPOINT ["sh", "/entryPoint.sh"]
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
