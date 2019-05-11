@@ -28,14 +28,14 @@ RUN php /home/composer/composer install --no-scripts
 COPY virtual-host.conf /etc/apache2/sites-available/000-default.conf
 
 ## Copy the EntryPoint file
-COPY ./entryPoint.sh /
+#COPY ./entryPoint.sh /
 
 # Correct file format to linux standard
-RUN sed -i -e 's/\r$//' /entryPoint.sh
+RUN sed -i -e 's/\r$//' /var/www/html/entryPoint.sh
 
 ## Edit file rights to run correctly at startup 
-RUN chmod +x entryPoint.sh
+RUN chmod +x /var/www/html/entryPoint.sh
 
-ENTRYPOINT ["sh", "/entryPoint.sh"]
+ENTRYPOINT ["sh", "/var/www/html/entryPoint.sh"]
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
