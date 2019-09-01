@@ -121,13 +121,25 @@ class FlightController extends Controller {
      */
     public function newAction(Request $request) {
         $flight = new Flight();
+        $em = $this->getDoctrine()->getManager();
         $flight->setUser($this->getUser());
-        $form = $this->createForm(FlightType::class, $flight);
+        $lastFlight = $em->getRepository('AppBundle:Flight')->getLastFlight($this->getUser()->getId());
+        if ($lastFlight) {
+            $flight->setGlider($lastFlight->getGlider());
+        } else {
+            $gliderList = $em->getRepository('AppBundle:Glider')->getGliderByUserId($this->getUser()->getId());
+            if (count($gliderList) == 0) {
+                return $this->redirectToRoute('glider_new', array('id' => $flight->getId()));
+            }
+        }
+
+        $form = $this->createForm(FlightType::class, $flight, [
+            'entity_manager' => $this->getDoctrine()->getManager(),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $flight = $this->savePlace($flight);
-            $em = $this->getDoctrine()->getManager();
             $em->persist($flight);
             $em->flush();
 
@@ -169,7 +181,9 @@ class FlightController extends Controller {
         if ($flight->getLanding()) {
             $flight->setLandingText($flight->getLanding()->getName());
         }
-        $editForm = $this->createForm(FlightType::class, $flight);
+        $editForm = $this->createForm(FlightType::class, $flight, [
+            'entity_manager' => $this->getDoctrine()->getManager(),
+        ]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

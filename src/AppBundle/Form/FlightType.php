@@ -9,8 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Doctrine\ORM\EntityRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class FlightType extends AbstractType {
 
@@ -20,27 +19,26 @@ class FlightType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $user = $options['data']->getUser();
-        $placesFunction = function (EntityRepository $er) use ($user) {
-            return $er->createQueryBuilder('p')
-                            ->where('p.user =' . $user->getId());
-        };
+
+        $em = $options['entity_manager'];
+
+        $dbGliders = $em->getRepository('AppBundle:Glider')->getGliderByUserId($user->getId());
+        $gliderList = array();
+        foreach($dbGliders as $k => $v) {
+            $key = $v->getBrand() . " " . $v->getName();
+            $gliderList[$key] = $v;
+        }
         
         $dateRange = array();
         foreach(range(date('Y'), 1980) as $k => $v) {
             $dateRange[$v] = $v;
         }
         
-        $builder->add('glider', EntityType::class, array(
-                    'class' => 'AppBundle:Glider',
+        $builder->add('glider', ChoiceType::class, array(
                     'attr' => array('class' => 'selectfield'),
-                    'query_builder' => function (EntityRepository $er) use ($user) {
-                return $er->createQueryBuilder('g')
-                        ->where('g.user =' . $user->getId());
-            },
                     'required' => true,
-                    'placeholder' => '',
-                    'label' => 'flight.glider',
-                    'empty_data' => null
+                    'choices' => $gliderList,
+                    'label' => 'flight.glider'
                 ))
                 ->add('date', DateType::class, array(
                     'format' => 'dd.MM.yyyy',
@@ -64,20 +62,6 @@ class FlightType extends AbstractType {
                     'label' => 'flight.landing',
                     'required' => false,
                 ))
-//                ->add('start', EntityType::class, array(
-//                    'class' => 'AppBundle:Place',
-//                    'attr' => array('class' => 'selectfield'),
-//                    'query_builder' => $placesFunction,
-//                    'label' => 'flight.start',
-//                    'required' => false,
-//                ))
-//                ->add('landing', EntityType::class, array(
-//                    'class' => 'AppBundle:Place',
-//                    'attr' => array('class' => 'selectfield'),
-//                    'query_builder' => $placesFunction,
-//                    'label' => 'flight.landing',
-//                    'required' => false,
-//                ))
                 ->add('price', null, array(
                     'label' => 'flight.price'))
                 ->add('km', null, array(
@@ -94,6 +78,8 @@ class FlightType extends AbstractType {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Flight'
         ));
+
+        $resolver->setRequired('entity_manager');
     }
 
 }

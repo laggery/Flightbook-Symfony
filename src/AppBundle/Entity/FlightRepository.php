@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Exception;
 
 /**
  * FlightRepository
@@ -33,5 +34,16 @@ class FlightRepository extends EntityRepository {
         return $nb > 0 ? true : false;
     }
 
-
+    public function getLastFlight($userId) {
+        try {
+            return $this->createQueryBuilder('f')
+                ->where('f.user =' . $userId)
+                ->orderBy('f.timestamp', 'DESC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleResult();
+        } catch (Exception $e) {
+            return null;
+        }
+    }
 }

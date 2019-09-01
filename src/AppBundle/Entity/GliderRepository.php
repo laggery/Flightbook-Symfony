@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class GliderRepository extends EntityRepository
 {
+    public function getGliderByUserId($userId) {
+        $res = $this->createQueryBuilder('g')
+                ->where('g.user =' . $userId)
+                ->getQuery()
+                ->getResult();
+        return $res;
+    }
 }
