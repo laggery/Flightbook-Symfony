@@ -1,9 +1,9 @@
 #!/bin/bash
 set -xe
 
-php /home/composer/composer run-script post-install-cmd
+composer install
 
-rm -R /home/composer
+rm -R /usr/local/bin/composer
 
 php bin/console cache:clear --env=prod --no-debug
 chmod -R 777 /var/www/html/var
