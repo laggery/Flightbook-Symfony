@@ -23,7 +23,8 @@ COPY . /var/www/html/
 RUN curl -s https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
-COPY virtual-host.conf /etc/apache2/sites-available/000-default.conf
+COPY virtual-host.conf /etc/apache2/sites-available
+RUN rm -rf /etc/apache2/sites-available/000-default.conf
 
 ## Copy the EntryPoint file
 #COPY ./entryPoint.sh /
