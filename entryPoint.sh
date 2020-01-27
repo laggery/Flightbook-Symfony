@@ -3,7 +3,6 @@ set -xe
 
 composer install
 
-rm -R /usr/local/bin/composer
 rm -f /var/www/html/composer-installer.sh
 
 php bin/console cache:clear --env=prod --no-debug
