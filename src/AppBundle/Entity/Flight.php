@@ -103,7 +103,7 @@ class Flight {
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="timestamp", type="datetime", nullable=true)
+     * @ORM\Column(name="timestamp", type="datetime", nullable=false)
      */
     private $timestamp;
 
@@ -112,6 +112,7 @@ class Flight {
      */
     public function __construct() {
         $this->date = new \DateTime();
+        $this->timestamp = new \DateTime('now');
     }
 
     /**
