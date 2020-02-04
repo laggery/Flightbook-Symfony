@@ -7,6 +7,12 @@ help:
         _controller: FrameworkBundle:Template:template
         template:    help/index.html.twig
 
+privacy-policy:
+    path: "/privacy-policy"
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    privacy-policy/index.html.twig
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

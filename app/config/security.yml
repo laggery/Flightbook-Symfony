@@ -41,6 +41,7 @@ security:
             
     access_control:
         - { path: ^/[^/]+/help, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/[^/]+/privacy-policy, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[^/]+/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[^/]+/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[^/]+/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
