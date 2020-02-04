@@ -1,6 +1,12 @@
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+help:
+    path: "/help"
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    help/index.html.twig
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
