@@ -71,7 +71,7 @@ class BCryptPasswordEncoder extends BasePasswordEncoder implements PasswordEncod
 
         $options = ['cost' => $this->cost];
 
-        return password_hash($raw, PASSWORD_BCRYPT, $options);
+        return str_replace("$2y$", "$2a$", password_hash($raw, PASSWORD_BCRYPT, $options));
     }
 
     /**
