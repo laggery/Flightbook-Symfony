@@ -15,3 +15,4 @@ parameters:
     env(MAILER_PORT): 465
     env(MAILER_AUTHMODE): login
     env(SECRET): secret
+    env(SECURITY_BCRYPT_COST):
