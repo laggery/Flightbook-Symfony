@@ -5,7 +5,8 @@ parameters:
 
 services:
     password_encoder:
-        class: AppBundle\Service\PasswordEncoder
+        class: AppBundle\Service\BCryptPasswordEncoder
+        arguments: [11, "@Doctrine"]
         
 #    app.locale_listener:
 #        class: AppBundle\EventListener\LocaleListener
