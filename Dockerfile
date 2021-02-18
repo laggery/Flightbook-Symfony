@@ -4,7 +4,11 @@ RUN apt-get update && \
 	apt-get install -y zip unzip && \
     apt-get clean
 	
-RUN docker-php-ext-install pdo pdo_mysql
+RUN apt-get install -y libpq-dev \
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+    && docker-php-ext-install pdo pdo_pgsql pgsql
+	
+# RUN docker-php-ext-install pdo pdo_pgsql
 
 
 RUN apt-get install -y libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
